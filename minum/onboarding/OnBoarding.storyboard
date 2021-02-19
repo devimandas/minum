@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jV-H2-Cox">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5jV-H2-Cox">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,140 +17,99 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGK-kP-4Jy">
-                                <rect key="frame" x="16" y="187" width="382" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIa-zf-ej1" userLabel="Stack View 1">
+                                <rect key="frame" x="51" y="323" width="312" height="61"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="JQ9-p5-Z8H">
+                                        <rect key="frame" x="0.0" y="0.0" width="156" height="61"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a reminder and drink a cup of water whenever they ring" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAG-KJ-7Jb">
+                                        <rect key="frame" x="156" y="0.0" width="156" height="61"/>
+                                        <accessibility key="accessibilityConfiguration" label="Set a reminder and drink a cup of water whenever they ring"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="3rD-iF-PuL"/>
+                                            <constraint firstAttribute="width" constant="156" id="n3l-r1-8At"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VM7-Xa-hVw" userLabel="Stack View 2">
+                                <rect key="frame" x="51" y="414" width="312" height="61"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard2" translatesAutoresizingMaskIntoConstraints="NO" id="2kN-0I-BzK">
+                                        <rect key="frame" x="0.0" y="0.0" width="156" height="61"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track your water intake in get statistics to see your progress" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei9-qc-sNu">
+                                        <rect key="frame" x="156" y="0.0" width="156" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="156" id="Q96-xO-U09"/>
+                                            <constraint firstAttribute="height" constant="61" id="kTw-9F-QAV"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-aK-HUk" userLabel="Stack View 3">
+                                <rect key="frame" x="51" y="505" width="312" height="69"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard3" translatesAutoresizingMaskIntoConstraints="NO" id="WoF-sj-xAJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="156" height="69"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track your water intake in get statistics to see your progress" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2b-Zw-y5r">
+                                        <rect key="frame" x="156" y="0.0" width="156" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="156" id="M3W-LO-I0f"/>
+                                            <constraint firstAttribute="height" constant="69" id="jFQ-cR-kUx"/>
+                                        </constraints>
+                                        <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLb-Ly-hcC">
                                 <rect key="frame" x="24" y="746" width="366" height="54"/>
-                                <accessibility key="accessibilityConfiguration" identifier="continueButton" label="Continue"/>
                                 <state key="normal" image="getstarted-btn"/>
                                 <connections>
                                     <segue destination="Xgz-we-U7n" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="FW1-xF-S5h"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIa-zf-ej1" userLabel="Stack View 1">
-                                <rect key="frame" x="51" y="278" width="312" height="61"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="JQ9-p5-Z8H">
-                                        <rect key="frame" x="0.0" y="0.0" width="54" height="61"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hsI-A5-XR5">
-                                        <rect key="frame" x="54" y="0.0" width="258" height="61"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COH-FE-l6o">
-                                                <rect key="frame" x="0.0" y="0.0" width="258" height="23"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="Reminder" label="Reminder"/>
-                                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set a reminder and drink a cup of water whenever they ring" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAG-KJ-7Jb">
-                                                <rect key="frame" x="0.0" y="23" width="258" height="38"/>
-                                                <accessibility key="accessibilityConfiguration" label="Set a reminder and drink a cup of water whenever they ring"/>
-                                                <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="COH-FE-l6o" firstAttribute="leading" secondItem="hsI-A5-XR5" secondAttribute="leading" constant="20" id="qIw-GM-lWq"/>
-                                            <constraint firstAttribute="trailing" secondItem="COH-FE-l6o" secondAttribute="trailing" constant="20" id="qvr-rc-plx"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VM7-Xa-hVw" userLabel="Stack View 2">
-                                <rect key="frame" x="51" y="369" width="312" height="61"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="LcX-wa-FYo">
-                                        <rect key="frame" x="0.0" y="0.0" width="54" height="61"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hDl-7X-cC7">
-                                        <rect key="frame" x="54" y="0.0" width="258" height="61"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set Drink Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya9-oa-CdE">
-                                                <rect key="frame" x="0.0" y="0.0" width="258" height="23"/>
-                                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Track your water intake in get statistics to see your progress" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei9-qc-sNu">
-                                                <rect key="frame" x="0.0" y="23" width="258" height="38"/>
-                                                <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Ya9-oa-CdE" firstAttribute="leading" secondItem="hDl-7X-cC7" secondAttribute="leading" constant="20" id="M99-KZ-dsd"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ya9-oa-CdE" secondAttribute="trailing" constant="20" id="gw2-Wb-dfT"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-aK-HUk" userLabel="Stack View 3">
-                                <rect key="frame" x="51" y="460" width="312" height="62"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard3" translatesAutoresizingMaskIntoConstraints="NO" id="x5D-7Y-tB6">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="62"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oPc-YW-5Xn">
-                                        <rect key="frame" x="64" y="0.0" width="248" height="62"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set Drink Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp1-jm-Gat">
-                                                <rect key="frame" x="0.0" y="0.0" width="248" height="24"/>
-                                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Track your water intake in get statistics to see your progress" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2b-Zw-y5r">
-                                                <rect key="frame" x="0.0" y="24" width="248" height="38"/>
-                                                <edgeInsets key="layoutMargins" top="2" left="8" bottom="8" right="8"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Xp1-jm-Gat" firstAttribute="leading" secondItem="oPc-YW-5Xn" secondAttribute="leading" constant="10" id="7Z6-KZ-gAF"/>
-                                            <constraint firstItem="Xp1-jm-Gat" firstAttribute="leading" secondItem="oPc-YW-5Xn" secondAttribute="leading" constant="20" id="Jkz-Lr-VLa"/>
-                                            <constraint firstAttribute="trailing" secondItem="Xp1-jm-Gat" secondAttribute="trailing" constant="20" id="Lyk-TL-4RS"/>
-                                            <constraint firstItem="Xp1-jm-Gat" firstAttribute="leading" secondItem="oPc-YW-5Xn" secondAttribute="leading" constant="10" id="bMK-wg-0yV"/>
-                                            <constraint firstAttribute="trailing" secondItem="Xp1-jm-Gat" secondAttribute="trailing" constant="20" id="fjb-Sf-tIc"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGK-kP-4Jy">
+                                <rect key="frame" x="139" y="196" width="136.5" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ehu-6S-KKW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="UGK-kP-4Jy" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="139" id="2hs-8u-1e0"/>
                             <constraint firstItem="VM7-Xa-hVw" firstAttribute="leading" secondItem="7Nn-mn-I6u" secondAttribute="leading" constant="51" id="3FI-7h-GTb"/>
-                            <constraint firstItem="LIa-zf-ej1" firstAttribute="top" secondItem="UGK-kP-4Jy" secondAttribute="bottom" constant="50" id="3dW-Mg-3KS"/>
-                            <constraint firstItem="ehu-6S-KKW" firstAttribute="trailing" secondItem="UGK-kP-4Jy" secondAttribute="trailing" constant="16" id="AIb-6f-wXb"/>
-                            <constraint firstItem="Ugf-aK-HUk" firstAttribute="top" secondItem="VM7-Xa-hVw" secondAttribute="bottom" constant="30" id="CZl-Xq-rmy"/>
+                            <constraint firstItem="ehu-6S-KKW" firstAttribute="trailing" secondItem="TLb-Ly-hcC" secondAttribute="trailing" constant="24" id="5so-r4-cEm"/>
+                            <constraint firstItem="TLb-Ly-hcC" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="24" id="9Dz-pN-Jsb"/>
+                            <constraint firstItem="VM7-Xa-hVw" firstAttribute="top" secondItem="LIa-zf-ej1" secondAttribute="bottom" constant="30" id="B2h-Kz-MV7"/>
                             <constraint firstItem="ehu-6S-KKW" firstAttribute="trailing" secondItem="LIa-zf-ej1" secondAttribute="trailing" constant="51" id="FVA-oY-feD"/>
-                            <constraint firstItem="ehu-6S-KKW" firstAttribute="trailing" secondItem="TLb-Ly-hcC" secondAttribute="trailing" constant="24" id="Fgj-0N-fnJ"/>
-                            <constraint firstItem="ehu-6S-KKW" firstAttribute="bottom" secondItem="TLb-Ly-hcC" secondAttribute="bottom" constant="62" id="Nmc-bi-Bdm"/>
-                            <constraint firstItem="TLb-Ly-hcC" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="24" id="ReD-o9-91p"/>
+                            <constraint firstItem="ehu-6S-KKW" firstAttribute="bottom" secondItem="TLb-Ly-hcC" secondAttribute="bottom" constant="62" id="NgB-AP-kjI"/>
+                            <constraint firstItem="LIa-zf-ej1" firstAttribute="leading" secondItem="VM7-Xa-hVw" secondAttribute="leading" id="TAJ-WT-ihu"/>
                             <constraint firstItem="LIa-zf-ej1" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="51" id="VEq-f3-mnr"/>
-                            <constraint firstItem="LIa-zf-ej1" firstAttribute="top" secondItem="UGK-kP-4Jy" secondAttribute="bottom" constant="50" id="bnb-eW-RI5"/>
-                            <constraint firstItem="VM7-Xa-hVw" firstAttribute="top" secondItem="LIa-zf-ej1" secondAttribute="bottom" constant="30" id="bw0-PN-vwP"/>
-                            <constraint firstItem="UGK-kP-4Jy" firstAttribute="top" secondItem="ehu-6S-KKW" secondAttribute="top" constant="143" id="dCt-Fw-a2Y"/>
+                            <constraint firstItem="ehu-6S-KKW" firstAttribute="bottom" secondItem="VM7-Xa-hVw" secondAttribute="bottom" constant="387" id="XGp-mF-kFh"/>
+                            <constraint firstItem="Ugf-aK-HUk" firstAttribute="leading" secondItem="VM7-Xa-hVw" secondAttribute="leading" id="Xkn-Zt-ouu"/>
+                            <constraint firstItem="ehu-6S-KKW" firstAttribute="bottom" secondItem="Ugf-aK-HUk" secondAttribute="bottom" constant="288" id="YbB-gg-XKm"/>
                             <constraint firstAttribute="trailing" secondItem="Ugf-aK-HUk" secondAttribute="trailing" constant="51" id="ezE-3o-S5Y"/>
-                            <constraint firstItem="Ugf-aK-HUk" firstAttribute="centerX" secondItem="TLb-Ly-hcC" secondAttribute="centerX" id="nE3-Sr-W6b"/>
-                            <constraint firstItem="UGK-kP-4Jy" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="16" id="pix-eG-1jF"/>
+                            <constraint firstItem="ehu-6S-KKW" firstAttribute="trailing" secondItem="UGK-kP-4Jy" secondAttribute="trailing" constant="138.5" id="g6J-Sm-Cyi"/>
                             <constraint firstItem="Ugf-aK-HUk" firstAttribute="leading" secondItem="ehu-6S-KKW" secondAttribute="leading" constant="51" id="qh8-oC-atd"/>
                             <constraint firstAttribute="trailing" secondItem="VM7-Xa-hVw" secondAttribute="trailing" constant="51" id="yDV-js-emH"/>
+                            <constraint firstItem="UGK-kP-4Jy" firstAttribute="top" secondItem="ehu-6S-KKW" secondAttribute="top" constant="152" id="ztH-zy-vMQ"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ehu-6S-KKW"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISo-iw-CQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -167,6 +128,10 @@
     <resources>
         <image name="getstarted-btn" width="366" height="54"/>
         <image name="onBoard1" width="54" height="61"/>
-        <image name="onBoard3" width="64" height="62"/>
+        <image name="onBoard2" width="54" height="61"/>
+        <image name="onBoard3" width="39" height="69"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
