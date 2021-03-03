@@ -9,12 +9,136 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettingsViewController: UITableViewController, UIPickerViewDelegate {
    
-    var arrayGender = ["Female", "Male"]
-    var picker = UIPickerView()
-    var toolBar : UIToolbar = UIToolbar()
+    
     private let authorizeHealthKitSection = 2
+    
+    private enum ProfileDataError: Error {
+      
+      case missingBodyMassIndex
+      
+      var localizedDescription: String {
+        switch self {
+        case .missingBodyMassIndex:
+          return "Unable to calculate body mass index with available profile data."
+        }
+      }
+    }
+    
+    private let userHealthProfile = UserHealthProfile()
+    
+    private func updateHealthInfo() {
+      loadAndDisplayAgeSex()
+     // loadAndDisplayMostRecentWeight()
+     // loadAndDisplayMostRecentHeight()
+    }
+    
+    private func loadAndDisplayAgeSex() {
+      
+      do {
+        let userAgeSex = try ProfileDataStore.getAgeSex()
+        userHealthProfile.ageUH = userAgeSex.ageUH
+        userHealthProfile.genderUH = userAgeSex.biologicalSexUH
+        updateLabels()
+      } catch let error {
+        self.displayAlert(for: error)
+      }
+    }
+    
+    private func updateLabels() {
+      
+      if let ageUH = userHealthProfile.ageUH {
+        age.text = "\(age)"
+      }
+
+      if let biologicalSexUH = userHealthProfile.genderUH {
+        gender.text = biologicalSexUH.stringRepresentation
+      }
+      
+//      if let weight = userHealthProfile.weightInKilograms {
+//        let weightFormatter = MassFormatter()
+//        weightFormatter.isForPersonMassUse = true
+//        weight.text = weightFormatter.string(fromKilograms: Double(weight))
+//      }
+//
+//      if let height = userHealthProfile.heightInMeters {
+//        let heightFormatter = LengthFormatter()
+//        heightFormatter.isForPersonHeightUse = true
+//        height.text = heightFormatter.string(fromMeters: Double(height))
+//      }
+     
+    }
+    
+//    private func loadAndDisplayMostRecentHeight() {
+//
+//      //1. Use HealthKit to create the Height Sample Type
+////      guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
+////        print("Height Sample Type is no longer available in HealthKit")
+////        return
+////      }
+//
+//      ProfileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
+//
+//        guard let sample = sample else {
+//
+//          if let error = error {
+//            self.displayAlert(for: error)
+//          }
+//
+//          return
+//        }
+//
+//        //2. Convert the height sample to meters, save to the profile model,
+//        //   and update the user interface.
+//        let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+//        self.userHealthProfile.heightInMeters = heightInMeters
+//        self.updateLabels()
+//      }
+//    }
+    
+//    private func loadAndDisplayMostRecentWeight() {
+//
+//      guard let weightSampleType = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
+//        print("Body Mass Sample Type is no longer available in HealthKit")
+//        return
+//      }
+//
+//      ProfileDataStore.getMostRecentSample(for: weightSampleType) { (sample, error) in
+//
+//        guard let sample = sample else {
+//
+//          if let error = error {
+//            self.displayAlert(for: error)
+//          }
+//          return
+//        }
+//
+//        let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+//        self.userHealthProfile.weightInKilograms = weightInKilograms
+//        self.updateLabels()
+//      }
+//    }
+    
+    
+    private func displayAlert(for error: Error) {
+      
+      let alert = UIAlertController(title: nil,
+                                    message: error.localizedDescription,
+                                    preferredStyle: .alert)
+      
+      alert.addAction(UIAlertAction(title: "O.K.",
+                                    style: .default,
+                                    handler: nil))
+      
+      present(alert, animated: true, completion: nil)
+    }
+    
+    private enum ProfileSection: Int {
+      case ageSex
+      case weightHeight
+      case readHealthKitData
+    }
     
     @IBOutlet weak var age: UILabel!
     @IBOutlet weak var weight: UILabel!
@@ -26,23 +150,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrayGender.count
-    }
-    
-    @objc func tap(gestureReconizer: UITapGestureRecognizer) {
-        print("*")
-        picker.isHidden = false
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        gender.text = arrayGender[row]
-        self.view.endEditing(true)
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrayGender[row]
-    }
     
     private func authorizeHealthKit() {
       
@@ -69,34 +176,23 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var pickerRect = picker.frame
-        pickerRect.origin.x = 0
-        pickerRect.origin.y = 204
-        picker.frame = pickerRect
-        picker.delegate = self
-        picker.dataSource = self
-        picker.isHidden = true
-        view.addSubview(picker)
-        
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tap(gestureReconizer:)))
-        gender.addGestureRecognizer(tap)
-        gender.isUserInteractionEnabled = true
-        
-        
-        
-        age.text = "14"
-        gender.text = "Female"
-        weight.text = "50"
-        height.text = "50"
-        
         
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
+        guard let section = ProfileSection(rawValue: indexPath.section) else {
+          fatalError("A ProfileSection should map to the index path's section")
+        }
+        
       if indexPath.section == authorizeHealthKitSection {
         authorizeHealthKit()
       }
+        
+        switch section {
+        case .readHealthKitData:
+          updateHealthInfo()
+        default: break
+        }
     }
 }
