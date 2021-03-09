@@ -4,7 +4,7 @@
 //
 //  Created by Ihwan ID on 27/05/20.
 //  Copyright © 2020 Ihwan ID. All rights reserved.
-//
+// tolong
 
 import CoreData
 import UIKit
