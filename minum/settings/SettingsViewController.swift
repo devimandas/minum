@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import HealthKit
 
 class SettingsViewController: UITableViewController, UIPickerViewDelegate {
    
@@ -30,8 +31,8 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     
     private func updateHealthInfo() {
       loadAndDisplayAgeSex()
-     // loadAndDisplayMostRecentWeight()
-     // loadAndDisplayMostRecentHeight()
+      loadAndDisplayMostRecentWeight()
+      loadAndDisplayMostRecentHeight()
     }
     
     private func loadAndDisplayAgeSex() {
@@ -49,76 +50,76 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     private func updateLabels() {
       
       if let ageUH = userHealthProfile.ageUH {
-        age.text = "\(age)"
+        age.text = "\(ageUH)"
       }
 
       if let biologicalSexUH = userHealthProfile.genderUH {
         gender.text = biologicalSexUH.stringRepresentation
       }
       
-//      if let weight = userHealthProfile.weightInKilograms {
-//        let weightFormatter = MassFormatter()
-//        weightFormatter.isForPersonMassUse = true
-//        weight.text = weightFormatter.string(fromKilograms: Double(weight))
-//      }
-//
-//      if let height = userHealthProfile.heightInMeters {
-//        let heightFormatter = LengthFormatter()
-//        heightFormatter.isForPersonHeightUse = true
-//        height.text = heightFormatter.string(fromMeters: Double(height))
-//      }
+      if let weightUH = userHealthProfile.weightInKilograms {
+        let weightFormatter = MassFormatter()
+        weightFormatter.isForPersonMassUse = true
+        weight.text = weightFormatter.string(fromKilograms: Double(weightUH))
+      }
+
+      if let heightUH = userHealthProfile.heightInMeters {
+        let heightFormatter = LengthFormatter()
+        heightFormatter.isForPersonHeightUse = true
+        height.text = heightFormatter.string(fromMeters: Double(heightUH))
+      }
      
     }
     
-//    private func loadAndDisplayMostRecentHeight() {
-//
-//      //1. Use HealthKit to create the Height Sample Type
-////      guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
-////        print("Height Sample Type is no longer available in HealthKit")
-////        return
-////      }
-//
-//      ProfileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
-//
-//        guard let sample = sample else {
-//
-//          if let error = error {
-//            self.displayAlert(for: error)
-//          }
-//
-//          return
-//        }
-//
-//        //2. Convert the height sample to meters, save to the profile model,
-//        //   and update the user interface.
-//        let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
-//        self.userHealthProfile.heightInMeters = heightInMeters
-//        self.updateLabels()
-//      }
-//    }
+    private func loadAndDisplayMostRecentHeight() {
+
+      //1. Use HealthKit to create the Height Sample Type
+      guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
+        print("Height Sample Type is no longer available in HealthKit")
+        return
+      }
+
+      ProfileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
+
+        guard let sample = sample else {
+
+          if let error = error {
+            self.displayAlert(for: error)
+          }
+
+          return
+        }
+
+        //2. Convert the height sample to meters, save to the profile model,
+        //   and update the user interface.
+        let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+        self.userHealthProfile.heightInMeters = heightInMeters
+        self.updateLabels()
+      }
+    }
     
-//    private func loadAndDisplayMostRecentWeight() {
-//
-//      guard let weightSampleType = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
-//        print("Body Mass Sample Type is no longer available in HealthKit")
-//        return
-//      }
-//
-//      ProfileDataStore.getMostRecentSample(for: weightSampleType) { (sample, error) in
-//
-//        guard let sample = sample else {
-//
-//          if let error = error {
-//            self.displayAlert(for: error)
-//          }
-//          return
-//        }
-//
-//        let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
-//        self.userHealthProfile.weightInKilograms = weightInKilograms
-//        self.updateLabels()
-//      }
-//    }
+    private func loadAndDisplayMostRecentWeight() {
+
+      guard let weightSampleType = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
+        print("Body Mass Sample Type is no longer available in HealthKit")
+        return
+      }
+
+      ProfileDataStore.getMostRecentSample(for: weightSampleType) { (sample, error) in
+
+        guard let sample = sample else {
+
+          if let error = error {
+            self.displayAlert(for: error)
+          }
+          return
+        }
+
+        let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+        self.userHealthProfile.weightInKilograms = weightInKilograms
+        self.updateLabels()
+      }
+    }
     
     
     private func displayAlert(for error: Error) {
