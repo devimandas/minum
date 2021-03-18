@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 import HealthKit
 
+// for declaration
+let defaults = UserDefaults()
+var statgender = defaults.string(forKey: "gender")
+var statage = defaults.string(forKey: "age")
+var statweight = defaults.string(forKey: "weight")
+var statheight = defaults.string(forKey: "height")
+
 class SettingsViewController: UITableViewController, UIPickerViewDelegate {
    
     
@@ -51,22 +58,39 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
       
       if let ageUH = userHealthProfile.ageUH {
         age.text = "\(ageUH)"
+        
+        statage = "\(ageUH)"
+        defaults.set(statage, forKey: "age")
+        print(statage ?? 0)
+        
       }
 
       if let biologicalSexUH = userHealthProfile.genderUH {
         gender.text = biologicalSexUH.stringRepresentation
+        
+        statgender = "\(String(describing: gender))"
+        defaults.set(statgender, forKey: "gender")
+        print(statgender! as String)
       }
       
       if let weightUH = userHealthProfile.weightInKilograms {
         let weightFormatter = MassFormatter()
         weightFormatter.isForPersonMassUse = true
         weight.text = weightFormatter.string(fromKilograms: Double(weightUH))
+        
+        statweight = "\(weightUH)"
+        defaults.set(statweight, forKey: "weight")
+        print(statweight ?? 0)
       }
 
       if let heightUH = userHealthProfile.heightInMeters {
         let heightFormatter = LengthFormatter()
         heightFormatter.isForPersonHeightUse = true
         height.text = heightFormatter.string(fromMeters: Double(heightUH))
+        
+        statheight = "\(heightUH)"
+        defaults.set(statheight, forKey: "height")
+        print(statheight ?? 0)
       }
      
     }
@@ -95,6 +119,12 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
         self.userHealthProfile.heightInMeters = heightInMeters
         self.updateLabels()
+        
+//        statage = "age"
+//        defaults.set(statage, forKey: "age")
+//
+//        statgender = "gender"
+//        defaults.set(statgender, forKey: "gender")
       }
     }
     
@@ -118,6 +148,12 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
         self.userHealthProfile.weightInKilograms = weightInKilograms
         self.updateLabels()
+        
+//        statweight = "weight"
+//        defaults.set(statweight, forKey: "weight")
+//
+//        statheight = "height"
+//        defaults.set(statheight, forKey: "height")
       }
     }
     
@@ -144,6 +180,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var age: UILabel!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var gender: UILabel!
+  //  Default.set(stat, forKey: "genderUH")
+   // Default.set(string, forKey: "gender")
+    
+    // for update the stat value
+    
+    
+    
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
     
@@ -177,6 +220,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(statage)
         
     }
     

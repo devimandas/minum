@@ -49,17 +49,16 @@ class HealthKitSetupAssistant {
     guard   let dateOfBirth = HKObjectType.characteristicType(forIdentifier: .dateOfBirth),
             let biologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex),
             let height = HKObjectType.quantityType(forIdentifier: .height),
-            let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-            let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) else {
+            let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass) else {
         
             completion(false, HealthkitSetupError.dataTypeNotAvailable)
             return
     }
     
     //3. Prepare a list of types you want HealthKit to read and write
-    let healthKitTypesToWrite: Set<HKSampleType> = [
-                                                    activeEnergy,
-                                                    HKObjectType.workoutType()]
+//    let healthKitTypesToWrite: Set<HKSampleType> = [
+//                                                    activeEnergy,
+//                                                    HKObjectType.workoutType()]
     
     let healthKitTypesToRead: Set<HKObjectType> = [dateOfBirth,
                                                    biologicalSex,
@@ -68,8 +67,7 @@ class HealthKitSetupAssistant {
                                                    HKObjectType.workoutType()]
     
     //4. Request Authorization
-    HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,
-                                         read: healthKitTypesToRead) { (success, error) in
+    HKHealthStore().requestAuthorization(toShare: nil,  read: healthKitTypesToRead) { (success, error) in
       completion(success, error)
     }
   }
