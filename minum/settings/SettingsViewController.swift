@@ -13,7 +13,7 @@ import HealthKit
 // for declaration
 let defaults = UserDefaults()
 var statgender = defaults.string(forKey: "gender")
-var statage = defaults.string(forKey: "age")
+var statage = defaults.integer(forKey: "age")
 var statweight = defaults.string(forKey: "weight")
 var statheight = defaults.string(forKey: "height")
 
@@ -49,6 +49,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         userHealthProfile.ageUH = userAgeSex.ageUH
         userHealthProfile.genderUH = userAgeSex.biologicalSexUH
         updateLabels()
+        
       } catch let error {
         self.displayAlert(for: error)
       }
@@ -57,20 +58,24 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     private func updateLabels() {
       
       if let ageUH = userHealthProfile.ageUH {
-        age.text = "\(ageUH)"
         
-        statage = "\(ageUH)"
+        
+        statage = ageUH
         defaults.set(statage, forKey: "age")
-        print(statage ?? 0)
+        print(statage)
+        age.text = "\(statage)"
+        
         
       }
 
       if let biologicalSexUH = userHealthProfile.genderUH {
         gender.text = biologicalSexUH.stringRepresentation
         
-        statgender = "\(String(describing: gender))"
-        defaults.set(statgender, forKey: "gender")
-        print(statgender! as String)
+        
+        statgender = biologicalSexUH.stringRepresentation
+        defaults.set(statgender ?? "", forKey: "gender")
+        print(statgender)
+
       }
       
       if let weightUH = userHealthProfile.weightInKilograms {
@@ -78,9 +83,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         weightFormatter.isForPersonMassUse = true
         weight.text = weightFormatter.string(fromKilograms: Double(weightUH))
         
-        statweight = "\(weightUH)"
+        statweight = weightFormatter.string(fromKilograms: Double(weightUH))
         defaults.set(statweight, forKey: "weight")
-        print(statweight ?? 0)
+        print(statweight)
       }
 
       if let heightUH = userHealthProfile.heightInMeters {
@@ -88,9 +93,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         heightFormatter.isForPersonHeightUse = true
         height.text = heightFormatter.string(fromMeters: Double(heightUH))
         
-        statheight = "\(heightUH)"
+        statheight = heightFormatter.string(fromMeters: Double(heightUH))
         defaults.set(statheight, forKey: "height")
-        print(statheight ?? 0)
+        print(statheight )
       }
      
     }
@@ -221,6 +226,14 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //print(statage)
+//        updateLabels()
+        print(statage)
+        age.text = "\(statage)"
+        gender.text = statgender
+        weight.text = statweight
+        height.text = statheight
+        
+        
         
     }
     
