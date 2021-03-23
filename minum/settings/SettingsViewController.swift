@@ -58,20 +58,16 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     private func updateLabels() {
       
       if let ageUH = userHealthProfile.ageUH {
-        
-        
         statage = ageUH
+        
         defaults.set(statage, forKey: "age")
         print(statage)
         age.text = "\(statage)"
-        
-        
       }
 
       if let biologicalSexUH = userHealthProfile.genderUH {
         gender.text = biologicalSexUH.stringRepresentation
-        
-        
+    
         statgender = biologicalSexUH.stringRepresentation
         defaults.set(statgender ?? "", forKey: "gender")
         print(statgender)
@@ -97,7 +93,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         defaults.set(statheight, forKey: "height")
         print(statheight )
       }
-     
+
     }
     
     private func loadAndDisplayMostRecentHeight() {
@@ -125,11 +121,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         self.userHealthProfile.heightInMeters = heightInMeters
         self.updateLabels()
         
-//        statage = "age"
-//        defaults.set(statage, forKey: "age")
-//
-//        statgender = "gender"
-//        defaults.set(statgender, forKey: "gender")
       }
     }
     
@@ -154,11 +145,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
         self.userHealthProfile.weightInKilograms = weightInKilograms
         self.updateLabels()
         
-//        statweight = "weight"
-//        defaults.set(statweight, forKey: "weight")
-//
-//        statheight = "height"
-//        defaults.set(statheight, forKey: "height")
       }
     }
     
@@ -185,20 +171,12 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var age: UILabel!
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var gender: UILabel!
-  //  Default.set(stat, forKey: "genderUH")
-   // Default.set(string, forKey: "gender")
-    
-    // for update the stat value
-    
-    
-    
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     
     private func authorizeHealthKit() {
       
@@ -225,16 +203,16 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(statage)
-//        updateLabels()
         print(statage)
-        age.text = "\(statage)"
-        gender.text = statgender
-        weight.text = statweight
-        height.text = statheight
         
-        
-        
+        if (authorizeHealthKitSection == 0) {
+            true
+        } else {
+         age.text = "\(statage)"
+         gender.text = statgender
+         weight.text = statweight
+         height.text = statheight
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
