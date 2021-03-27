@@ -173,6 +173,22 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var gender: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
+    @IBAction func notification(_ sender: Any) {
+     //   cell.textLabel?.text = notifications[indexPath.row]
+//        let notificationType = notifications[indexPath.row]
+//        
+//        let alert = UIAlertController(title: "",
+//                                      message: "After 5 seconds " + notificationType + " will appear",
+//                                      preferredStyle: .alert)
+//        
+//        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+//            
+//            self.appDelegate?.scheduleNotification(notificationType: notificationType)
+//        }
+//        
+//        alert.addAction(okAction)
+//        present(alert, animated: true, completion: nil)
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

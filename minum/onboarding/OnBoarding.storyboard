@@ -12,7 +12,7 @@
         <!--On Boarding View Controller-->
         <scene sceneID="xLd-TG-Xc6">
             <objects>
-                <viewController id="5jV-H2-Cox" customClass="OnBoardingViewController" customModule="minum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoarding" id="5jV-H2-Cox" customClass="OnBoardingViewController" customModule="minum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Nn-mn-I6u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISo-iw-CQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-420.28985507246381" y="24.776785714285712"/>
+            <point key="canvasLocation" x="-822" y="-3"/>
         </scene>
         <!--Water-->
         <scene sceneID="es9-vl-Jri">
