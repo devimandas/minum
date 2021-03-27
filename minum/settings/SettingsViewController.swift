@@ -174,6 +174,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
     @IBAction func notification(_ sender: Any) {
+        if ((sender as AnyObject).isOn == true) {
+                 //Yes
+            print("Yes")
+                  } else {
+                    //No
+                    print("No")
+                  }
      //   cell.textLabel?.text = notifications[indexPath.row]
 //        let notificationType = notifications[indexPath.row]
 //        
