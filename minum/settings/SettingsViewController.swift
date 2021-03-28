@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import HealthKit
+//import LocalNotificationManager
 
 // for declaration
 let defaults = UserDefaults()
@@ -16,6 +17,8 @@ var statgender = defaults.string(forKey: "gender")
 var statage = defaults.integer(forKey: "age")
 var statweight = defaults.string(forKey: "weight")
 var statheight = defaults.string(forKey: "height")
+
+//let localnotificationmanager = LocalNotificationManager()
 
 class SettingsViewController: UITableViewController, UIPickerViewDelegate {
    
@@ -174,27 +177,24 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
     @IBAction func notification(_ sender: Any) {
-        if ((sender as AnyObject).isOn == true) {
-                 //Yes
-            print("Yes")
-                  } else {
-                    //No
-                    print("No")
-                  }
-     //   cell.textLabel?.text = notifications[indexPath.row]
-//        let notificationType = notifications[indexPath.row]
-//        
-//        let alert = UIAlertController(title: "",
-//                                      message: "After 5 seconds " + notificationType + " will appear",
-//                                      preferredStyle: .alert)
-//        
-//        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-//            
-//            self.appDelegate?.scheduleNotification(notificationType: notificationType)
+        let alertController = UIAlertController(title: "Local Notification", message: nil, preferredStyle: .actionSheet)
+        let setLocalNotificationAction = UIAlertAction(title: "Set", style: .default) { (action) in LocalNotificationManager.setNotification(5, of: .seconds, repeats: false, title: "Hello", body: "local", userInfo: ["aps" : ["hello" : "world"]])
+        }
+//        let removeLocalNotificationAction = UIAlertAction(title: "Remove", style: .default) { (action) in LocalNotificationManager.cancel()
 //        }
-//        
-//        alert.addAction(okAction)
-//        present(alert, animated: true, completion: nil)
+        
+        if ((sender as AnyObject).isOn == true) {
+        //Yes
+        print("Yes")
+           alertController.addAction(setLocalNotificationAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+        //No
+        print("No")
+           // let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
+            //alertController.addAction(removeLocalNotificationAction)
+            //alertController.addAction(cancelAction)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

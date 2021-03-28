@@ -14,6 +14,7 @@
 		0266C30F25EEB6B50092F5E5 /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */; };
 		0266C31225EEB7DB0092F5E5 /* ProfileDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C31125EEB7DB0092F5E5 /* ProfileDataStore.swift */; };
 		0266C31525EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C31425EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift */; };
+		029D94D5260FF46E00165C77 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D94D4260FF46E00165C77 /* LocalNotificationManager.swift */; };
 		609946262474509B008F62AA /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609946252474509B008F62AA /* History.storyboard */; };
 		60AF9D73246AB51B003764ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF9D72246AB51B003764ED /* AppDelegate.swift */; };
 		60AF9D75246AB51B003764ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF9D74246AB51B003764ED /* SceneDelegate.swift */; };
@@ -45,6 +46,7 @@
 		0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		0266C31125EEB7DB0092F5E5 /* ProfileDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStore.swift; sourceTree = "<group>"; };
 		0266C31425EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
+		029D94D4260FF46E00165C77 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		02CCEAA825B8876F00A622E1 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Bold.otf"; path = "../../../../../Library/Fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		19F241C0E7DF7B1E7D47A33F /* Pods-minum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minum.debug.xcconfig"; path = "Target Support Files/Pods-minum/Pods-minum.debug.xcconfig"; sourceTree = "<group>"; };
 		609946252474509B008F62AA /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				0214C7EE25E02E9A00902E05 /* Models */,
 				0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */,
+				029D94D4260FF46E00165C77 /* LocalNotificationManager.swift */,
 				02CCEAA725B8871300A622E1 /* Font */,
 				60AF9D71246AB51B003764ED /* minum */,
 				60AF9D70246AB51B003764ED /* Products */,
@@ -338,6 +341,7 @@
 				0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */,
 				60AF9D77246AB51B003764ED /* WaterViewController.swift in Sources */,
 				60AF9D73246AB51B003764ED /* AppDelegate.swift in Sources */,
+				029D94D5260FF46E00165C77 /* LocalNotificationManager.swift in Sources */,
 				60AF9D75246AB51B003764ED /* SceneDelegate.swift in Sources */,
 				60AF9D8E246ABAFB003764ED /* HistoryViewController.swift in Sources */,
 				60CF8B4924863FB00045535B /* CoreDataManager.swift in Sources */,
