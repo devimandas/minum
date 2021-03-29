@@ -25,7 +25,7 @@
         <!--My Water-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="9pv-A4-QxB" customClass="WaterViewController" customModule="minum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WaterDrink" modalPresentationStyle="fullScreen" id="9pv-A4-QxB" customClass="WaterViewController" customModule="minum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="2ON-MP-lYL">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ArH-cr-l9R" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="WaterTabbar" automaticallyAdjustsScrollViewInsets="NO" id="ArH-cr-l9R" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xhc-dW-FwE">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

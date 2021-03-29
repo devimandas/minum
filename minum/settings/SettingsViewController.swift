@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import HealthKit
+import UserNotifications
 //import LocalNotificationManager
 
 // for declaration
@@ -178,7 +179,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     @IBOutlet weak var authorizeHK: UISwitch!
     @IBAction func notification(_ sender: Any) {
         let alertController = UIAlertController(title: "Local Notification", message: nil, preferredStyle: .actionSheet)
-        let setLocalNotificationAction = UIAlertAction(title: "Set", style: .default) { (action) in LocalNotificationManager.setNotification(5, of: .seconds, repeats: false, title: "Hello", body: "local", userInfo: ["aps" : ["hello" : "world"]])
+        let setLocalNotificationAction = UIAlertAction(title: "Set", style: .default) { (action) in LocalNotificationManager.setNotification(5, of: .seconds, repeats: false, title: "It's time to drink water!", body: "After drinking, touch the cup to confirm", userInfo: ["aps" : ["hello" : "world"]])
         }
 //        let removeLocalNotificationAction = UIAlertAction(title: "Remove", style: .default) { (action) in LocalNotificationManager.cancel()
 //        }
@@ -196,6 +197,71 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
             //alertController.addAction(cancelAction)
         }
     }
+    
+    @IBAction func fasting(_ sender: Any) {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Weekly Staff Meeting"
+//        content.body = "Every Tuesday at 2pm"
+//
+//        var dateComponents = DateComponents()
+//        dateComponents.calendar = Calendar.current
+//
+//        dateComponents.weekday = 2  // Tuesday
+//        dateComponents.hour = 14    // 14:00 hours
+//        dateComponents.minute = 46
+//
+//        // Create the trigger as a repeating event.
+//        let trigger = UNCalendarNotificationTrigger(
+//                 dateMatching: dateComponents, repeats: true)
+//
+//
+//        let uuidString = UUID().uuidString
+//        let request = UNNotificationRequest(identifier: uuidString,
+//                    content: content, trigger: trigger)
+//
+//        // Schedule the request with the system.
+//        let notificationCenter = UNUserNotificationCenter.current()
+//        notificationCenter.add(request) { (error) in
+//           if error != nil {
+//              // Handle any errors.
+//           }
+//        }
+        
+        
+        if ((sender as AnyObject).isOn == true) {
+        print("Yes")
+            
+            let notification = UILocalNotification()
+            
+            var dateComponents = DateComponents()
+            dateComponents.calendar = Calendar.current
+
+              /* Time and timezone settings */
+            notification.fireDate = NSDate(timeIntervalSinceNow: 8.0) as Date
+            notification.repeatInterval = NSCalendar.Unit.day
+            notification.timeZone = NSCalendar.current.timeZone
+              notification.alertBody = "A new item is downloaded."
+
+              /* Action settings */
+              notification.hasAction = true
+              notification.alertAction = "View"
+
+              /* Badge settings */
+              notification.applicationIconBadgeNumber =
+                UIApplication.shared.applicationIconBadgeNumber + 1
+              /* Additional information, user info */
+              notification.userInfo = [
+                "Key 1" : "Value 1",
+                "Key 2" : "Value 2"
+              ]
+
+              /* Schedule the notification */
+            UIApplication.shared.scheduleLocalNotification(notification)
+            } else {
+        print("No")
+        }
+    }
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

@@ -24,12 +24,12 @@
 	<string>Access your library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Using Camera To Take Picture</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Save foto to your library</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>“We will use your health information to better track Prancercise workouts.”</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>“We will use your health information to better track Prancercise workouts.”</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save foto to your library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -51,8 +51,6 @@
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>OnBoarding</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
