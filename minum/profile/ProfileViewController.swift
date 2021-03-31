@@ -17,9 +17,9 @@ class ProfileViewController: UIViewController {
     
     @IBAction func goToHistory(_ sender: UIButton) {
             let storyboard = UIStoryboard(name: "Drink", bundle: nil)
-           // let vc = storyboard.instantiateInitialViewController() as? NewDrinkViewController ?? UIViewController()
+            let vc = storyboard.instantiateInitialViewController() as? NewDrinkViewController ?? UIViewController()
         
-          //  present(vc, animated: true, completion: nil)
+            present(vc, animated: true, completion: nil)
        
     }
     

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0214C7E725DED0DD00902E05 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0214C7E625DED0DD00902E05 /* HealthKit.framework */; };
 		0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */; };
+		0242825E261397A70099CF42 /* NewDrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242825D261397A70099CF42 /* NewDrinkViewController.swift */; };
+		02428262261397E20099CF42 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02428261261397E20099CF42 /* PreviewViewController.swift */; };
+		02428266261398120099CF42 /* Drink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02428265261398120099CF42 /* Drink.storyboard */; };
 		0250CD6C248144510031825D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD6B248144510031825D /* Settings.storyboard */; };
 		0250CD6E248145E50031825D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD6D248145E50031825D /* SettingsViewController.swift */; };
 		0266C30F25EEB6B50092F5E5 /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */; };
@@ -41,6 +44,9 @@
 		0214C7E525DED0DC00902E05 /* minum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minum.entitlements; sourceTree = "<group>"; };
 		0214C7E625DED0DD00902E05 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
+		0242825D261397A70099CF42 /* NewDrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDrinkViewController.swift; sourceTree = "<group>"; };
+		02428261261397E20099CF42 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		02428265261398120099CF42 /* Drink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Drink.storyboard; sourceTree = "<group>"; };
 		0250CD6B248144510031825D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		0250CD6D248145E50031825D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
@@ -92,6 +98,16 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0242825C2613975E0099CF42 /* Drink */ = {
+			isa = PBXGroup;
+			children = (
+				0242825D261397A70099CF42 /* NewDrinkViewController.swift */,
+				02428261261397E20099CF42 /* PreviewViewController.swift */,
+				02428265261398120099CF42 /* Drink.storyboard */,
+			);
+			path = Drink;
 			sourceTree = "<group>";
 		};
 		0250CD6A248143FB0031825D /* settings */ = {
@@ -185,6 +201,7 @@
 				0250CD6A248143FB0031825D /* settings */,
 				6099462224745042008F62AA /* profile */,
 				6099462124744FFA008F62AA /* history */,
+				0242825C2613975E0099CF42 /* Drink */,
 				6099461F24744FDB008F62AA /* water */,
 				60AF9D91246AC8F4003764ED /* onboarding */,
 				60AF9D72246AB51B003764ED /* AppDelegate.swift */,
@@ -278,6 +295,7 @@
 				60AF9D84246AB51F003764ED /* LaunchScreen.storyboard in Resources */,
 				60AF9D81246AB51F003764ED /* Assets.xcassets in Resources */,
 				60AF9D7C246AB51B003764ED /* Water.storyboard in Resources */,
+				02428266261398120099CF42 /* Drink.storyboard in Resources */,
 				60CF8B5224868D360045535B /* HistoryDetailTableViewCell.xib in Resources */,
 				60AF9D97246AF775003764ED /* OnBoarding.storyboard in Resources */,
 				609946262474509B008F62AA /* History.storyboard in Resources */,
@@ -336,7 +354,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				60CF8B4E248689970045535B /* HistoryDetailViewController.swift in Sources */,
+				0242825E261397A70099CF42 /* NewDrinkViewController.swift in Sources */,
 				0266C31225EEB7DB0092F5E5 /* ProfileDataStore.swift in Sources */,
+				02428262261397E20099CF42 /* PreviewViewController.swift in Sources */,
 				0266C31525EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */,
 				60AF9D77246AB51B003764ED /* WaterViewController.swift in Sources */,
