@@ -11,13 +11,13 @@
 		0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */; };
 		0242825E261397A70099CF42 /* NewDrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242825D261397A70099CF42 /* NewDrinkViewController.swift */; };
 		02428262261397E20099CF42 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02428261261397E20099CF42 /* PreviewViewController.swift */; };
-		02428266261398120099CF42 /* Drink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02428265261398120099CF42 /* Drink.storyboard */; };
 		0250CD6C248144510031825D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD6B248144510031825D /* Settings.storyboard */; };
 		0250CD6E248145E50031825D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD6D248145E50031825D /* SettingsViewController.swift */; };
 		0266C30F25EEB6B50092F5E5 /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */; };
 		0266C31225EEB7DB0092F5E5 /* ProfileDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C31125EEB7DB0092F5E5 /* ProfileDataStore.swift */; };
 		0266C31525EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C31425EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift */; };
 		029D94D5260FF46E00165C77 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029D94D4260FF46E00165C77 /* LocalNotificationManager.swift */; };
+		02C29F7D261784C5005AB37B /* Drink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02C29F7C261784C5005AB37B /* Drink.storyboard */; };
 		609946262474509B008F62AA /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609946252474509B008F62AA /* History.storyboard */; };
 		60AF9D73246AB51B003764ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF9D72246AB51B003764ED /* AppDelegate.swift */; };
 		60AF9D75246AB51B003764ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF9D74246AB51B003764ED /* SceneDelegate.swift */; };
@@ -46,13 +46,13 @@
 		0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
 		0242825D261397A70099CF42 /* NewDrinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDrinkViewController.swift; sourceTree = "<group>"; };
 		02428261261397E20099CF42 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		02428265261398120099CF42 /* Drink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Drink.storyboard; sourceTree = "<group>"; };
 		0250CD6B248144510031825D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		0250CD6D248145E50031825D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
 		0266C31125EEB7DB0092F5E5 /* ProfileDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStore.swift; sourceTree = "<group>"; };
 		0266C31425EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
 		029D94D4260FF46E00165C77 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		02C29F7C261784C5005AB37B /* Drink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Drink.storyboard; sourceTree = "<group>"; };
 		02CCEAA825B8876F00A622E1 /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Rounded-Bold.otf"; path = "../../../../../Library/Fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		19F241C0E7DF7B1E7D47A33F /* Pods-minum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-minum.debug.xcconfig"; path = "Target Support Files/Pods-minum/Pods-minum.debug.xcconfig"; sourceTree = "<group>"; };
 		609946252474509B008F62AA /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			children = (
 				0242825D261397A70099CF42 /* NewDrinkViewController.swift */,
 				02428261261397E20099CF42 /* PreviewViewController.swift */,
-				02428265261398120099CF42 /* Drink.storyboard */,
+				02C29F7C261784C5005AB37B /* Drink.storyboard */,
 			);
 			path = Drink;
 			sourceTree = "<group>";
@@ -295,7 +295,7 @@
 				60AF9D84246AB51F003764ED /* LaunchScreen.storyboard in Resources */,
 				60AF9D81246AB51F003764ED /* Assets.xcassets in Resources */,
 				60AF9D7C246AB51B003764ED /* Water.storyboard in Resources */,
-				02428266261398120099CF42 /* Drink.storyboard in Resources */,
+				02C29F7D261784C5005AB37B /* Drink.storyboard in Resources */,
 				60CF8B5224868D360045535B /* HistoryDetailTableViewCell.xib in Resources */,
 				60AF9D97246AF775003764ED /* OnBoarding.storyboard in Resources */,
 				609946262474509B008F62AA /* History.storyboard in Resources */,

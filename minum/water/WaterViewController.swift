@@ -43,7 +43,7 @@ class WaterViewController: UIViewController {
   
     @IBAction func goToDrink(_ sender: UIButton) {
                   let storyboard = UIStoryboard(name: "Drink", bundle: nil)
-                  let vc = storyboard.instantiateInitialViewController() as? NewDrinkViewController ?? UIViewController()
+                  let vc = storyboard.instantiateInitialViewController() as? PreviewViewController ?? UIViewController()
                   present(vc, animated: true, completion: nil)
           }
 

@@ -3,15 +3,11 @@
 //
 //  Created by Edo Lorenza on 29/05/20.
 //  Copyright © 2020 Ihwan ID. All rights reserved.
-//adding new file
+//
 import UIKit
-import CoreML
-import Vision
 
 class PreviewViewController: UIViewController {
    
-   @IBOutlet weak var ResultPhoto: UIImageView!
-   @IBOutlet weak var photoView: UIImageView!
    @IBOutlet weak var drinkBtnLbl: UIButton!
    @IBOutlet weak var waterVolumeTextField: UITextField!
     
@@ -37,12 +33,9 @@ class PreviewViewController: UIViewController {
    
    override func viewDidLoad() {
        super.viewDidLoad()
-       photoView.image = image
-       detectPhoto(image: photoView.image!)
        createVolumePicker()
        createToolbar()
-    
-      drinkBtnLbl.layer.cornerRadius = 5
+       drinkBtnLbl.layer.cornerRadius = 5
              
    }
     
@@ -69,7 +62,6 @@ class PreviewViewController: UIViewController {
             
             let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(PreviewViewController.dismissKeyboard))
         
-          
           
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
             label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -111,49 +103,6 @@ class PreviewViewController: UIViewController {
        }
 
     
-    
-   func detectPhoto(image: UIImage) {
-       //load coreml model
-       guard let ciImage = CIImage(image: image) else {
-           fatalError("Couldn't convert UIImage to CIImage")
-       }
-       guard let model = try? VNCoreMLModel(for: NewImageClassifier().model) else {
-           fatalError("Can't load CoreML Model")
-       }
-    
-       let request = VNCoreMLRequest(model: model) {
-           (vnRequest, error) in
-           print(vnRequest.results?.first as Any)
-           guard let results = vnRequest.results as?
-               [VNClassificationObservation], let firstResult = results.first else {
-                   fatalError("Unexpected result")
-           }
-           DispatchQueue.main.async {
-               if(firstResult.identifier.contains("water bottle")){
-                   self.name = "water"
-               }else if(firstResult.identifier.contains("water cup")){
-                   self.name = "water"
-               }else if(firstResult.identifier.contains("water glass")){
-                   self.name = "water"
-               }else{
-                  self.name = "Not classifier"
-               }
-             
-             self.ResultPhoto.image = UIImage(named: self.name)
-            
-           }
-       }
-
-       let handler = VNImageRequestHandler(ciImage: ciImage)
-       DispatchQueue.global(qos:
-           DispatchQoS.QoSClass.userInteractive).async {
-               do {
-                   try handler.perform([request])
-               } catch {
-                   print(error)
-               }
-       }
-   }
 }
 
 
