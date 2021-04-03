@@ -63,8 +63,7 @@ class HealthKitSetupAssistant {
     let healthKitTypesToRead: Set<HKObjectType> = [dateOfBirth,
                                                    biologicalSex,
                                                    height,
-                                                   bodyMass,
-                                                   HKObjectType.workoutType()]
+                                                   bodyMass]
     
     //4. Request Authorization
     HKHealthStore().requestAuthorization(toShare: nil,  read: healthKitTypesToRead) { (success, error) in
