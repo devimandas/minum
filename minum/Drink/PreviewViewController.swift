@@ -92,11 +92,11 @@ class PreviewViewController: UIViewController {
     notification.notificationOccurred(.success)
     //notificationType The type of notification feedback (success,warning,error).
     
-    guard let imageToSave = image else {
-               return
-           }
+//    guard let imageToSave = image else {
+//               return
+//           }
     
-    guard let newData = CoreDataManager.shared.createDrink(image: imageToSave, amount: selectVolume!) else { return }
+    guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
     
     print(newData)
     

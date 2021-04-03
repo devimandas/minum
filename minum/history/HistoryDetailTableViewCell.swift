@@ -12,7 +12,7 @@ class HistoryDetailTableViewCell: UITableViewCell {
 
     @IBOutlet weak var hour: UILabel!
     @IBOutlet weak var desc: UILabel!
-    @IBOutlet weak var photo: UIImageView!
+//    @IBOutlet weak var photo: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

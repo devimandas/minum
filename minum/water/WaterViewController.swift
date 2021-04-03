@@ -39,8 +39,6 @@ class WaterViewController: UIViewController {
     
     var wave: WaveAnimationView!
     
-    @IBOutlet weak var drinkBtnlbl: UIButton!
-    
     func createVolumePicker() {
           
           let volumePicker = UIPickerView()
@@ -85,6 +83,24 @@ class WaterViewController: UIViewController {
           view.endEditing(true)
       }
     
+    //save image and picker to core data
+    @IBAction func saveButton(_ sender: Any) {
+     
+     //self.hapticImpact.impactOccurred()
+     
+     notification.notificationOccurred(.success)
+     //notificationType The type of notification feedback (success,warning,error).
+     
+//     guard let imageToSave = image else {
+//                return
+//            }
+     
+     guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
+     
+     print(newData)
+     
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -95,7 +111,7 @@ class WaterViewController: UIViewController {
         lapView.layer.backgroundColor = UIColor(rgb: 0x253961).cgColor
         lapView.layer.borderWidth = 5.0
     
-        drinkBtnlbl.layer.cornerRadius = 5
+ //       drinkBtnlbl.layer.cornerRadius = 5
 
         wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
                lapView.addSubview(wave)
@@ -111,13 +127,6 @@ class WaterViewController: UIViewController {
         
         wave.stopAnimation()
     }
-  
-    @IBAction func goToDrink(_ sender: UIButton) {
-                  let storyboard = UIStoryboard(name: "Drink", bundle: nil)
-                  let vc = storyboard.instantiateInitialViewController() as? PreviewViewController ?? UIViewController()
-                  present(vc, animated: true, completion: nil)
-          }
-
 
 }
 

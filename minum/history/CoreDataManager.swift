@@ -26,7 +26,7 @@ struct CoreDataManager {
     }()
     
     @discardableResult
-    func createDrink(image: UIImage, amount: String) -> Drink? {
+    func createDrink(amount: String) -> Drink? {
         let context = persistentContainer.viewContext
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -40,11 +40,11 @@ struct CoreDataManager {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         
-        let imageData = image.jpegData(compressionQuality: 1.0)
+      //  let imageData = image.jpegData(compressionQuality: 1.0)
         let history = History(context: context)
         history.amount = Int32(amount) ?? 0
         history.hours = "\(hour):\(minute)"
-        history.photo = imageData
+      //  history.photo = imageData
         
         let drinks = CoreDataManager.shared.fetchDrinks()
         

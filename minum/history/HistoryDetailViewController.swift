@@ -43,7 +43,7 @@ extension HistoryDetailViewController: UITableViewDataSource{
        
         cell.desc.text = "You drink \(history[indexPath.row].amount) water"
         cell.hour.text = "\(history[indexPath.row].hours!)"
-        cell.photo.image = UIImage(data: history[indexPath.row].photo!)
+        //cell.photo.image = UIImage(data: history[indexPath.row].photo!)
 
         return cell
     }
