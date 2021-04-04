@@ -4,7 +4,7 @@
 //
 //  Created by Ihwan ID on 02/06/20.
 //  Copyright © 2020 Ihwan ID. All rights reserved.
-//
+
 
 import UIKit
 
@@ -43,7 +43,6 @@ extension HistoryDetailViewController: UITableViewDataSource{
        
         cell.desc.text = "You drink \(history[indexPath.row].amount) water"
         cell.hour.text = "\(history[indexPath.row].hours!)"
-        //cell.photo.image = UIImage(data: history[indexPath.row].photo!)
 
         return cell
     }

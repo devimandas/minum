@@ -31,7 +31,6 @@ class WaterViewController: UIViewController {
  //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
        
     var selectVolume: String?
-    var image:UIImage!
     var text:UILabel!
     var name:String!
     
@@ -60,7 +59,7 @@ class WaterViewController: UIViewController {
           toolBar.barTintColor = .white
           toolBar.tintColor = .systemBlue
           
-          let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(PreviewViewController.dismissKeyboard))
+          let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
       
         
           let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
@@ -83,17 +82,13 @@ class WaterViewController: UIViewController {
           view.endEditing(true)
       }
     
-    //save image and picker to core data
+    //save data and picker to core data
     @IBAction func saveButton(_ sender: Any) {
      
      //self.hapticImpact.impactOccurred()
      
      notification.notificationOccurred(.success)
      //notificationType The type of notification feedback (success,warning,error).
-     
-//     guard let imageToSave = image else {
-//                return
-//            }
      
      guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
      

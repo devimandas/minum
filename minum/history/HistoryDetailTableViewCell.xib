@@ -54,7 +54,6 @@
             <connections>
                 <outlet property="desc" destination="HAf-k8-Wg7" id="ze9-G0-iVR"/>
                 <outlet property="hour" destination="KRm-yK-A7N" id="yKK-pW-y51"/>
-                <outlet property="photo" destination="WRI-Ki-iCW" id="WCV-el-Gf5"/>
             </connections>
             <point key="canvasLocation" x="128.2608695652174" y="174.77678571428569"/>
         </tableViewCell>

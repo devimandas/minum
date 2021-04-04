@@ -40,11 +40,9 @@ struct CoreDataManager {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         
-      //  let imageData = image.jpegData(compressionQuality: 1.0)
         let history = History(context: context)
         history.amount = Int32(amount) ?? 0
         history.hours = "\(hour):\(minute)"
-      //  history.photo = imageData
         
         let drinks = CoreDataManager.shared.fetchDrinks()
         
