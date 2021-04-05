@@ -115,6 +115,15 @@ class WaterViewController: UIViewController {
         createVolumePicker()
         createToolbar()
         drinkBtnLbl.layer.cornerRadius = 5
+        
+        let drinks = CoreDataManager.shared.fetchDrinks()
+                var histories = [History]()
+                
+                for drink in drinks! {
+                    histories.append(contentsOf: drink.history!.allObjects as! [History])
+                }
+                let amount = histories.map({$0.amount}).reduce(0, +)
+                print (amount)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
