@@ -19,6 +19,8 @@ var statage = defaults.integer(forKey: "age")
 var statweight = defaults.string(forKey: "weight")
 var statheight = defaults.string(forKey: "height")
 
+var isAuthorize = defaults.bool(forKey: "Authorize")
+
 //let localnotificationmanager = LocalNotificationManager()
 
 class SettingsViewController: UITableViewController, UIPickerViewDelegate {
@@ -268,40 +270,40 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     }
     
     private func authorizeHealthKit() {
-      
-      HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
-        
-        guard authorized else {
           
-          let baseMessage = "HealthKit Authorization Failed"
-          
-          if let error = error {
-            print("\(baseMessage). Reason: \(error.localizedDescription)")
-          } else {
-            print(baseMessage)
+          HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+            
+            guard authorized else {
+              
+              let baseMessage = "HealthKit Authorization Failed"
+              
+              if let error = error {
+                print("\(baseMessage). Reason: \(error.localizedDescription)")
+              } else {
+                print(baseMessage)
+              }
+              
+              return
+            }
+            
+            isAuthorize = true
+            defaults.set(isAuthorize, forKey: "Authorize")
+            print("HealthKit Successfully Authorized.")
           }
           
-          return
         }
-        
-        print("HealthKit Successfully Authorized.")
-      }
-      
-    }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(statage)
         
-        if (authorizeHealthKitSection == 0) {
-            true
-        } else {
-         age.text = "\(statage)"
-         gender.text = statgender
-         weight.text = statweight
-         height.text = statheight
-        }
+        if isAuthorize == true {
+                    age.text = "\(statage)"
+                    gender.text = statgender
+                    weight.text = statweight
+                    height.text = statheight
+                }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
