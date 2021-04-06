@@ -14,7 +14,8 @@ class WaterViewController: UIViewController {
 //    @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var drinkBtnLbl: UIButton!
     @IBOutlet weak var waterVolumeTextField: UITextField!
-     
+    @IBOutlet weak var progressDrinks: UILabel!
+    
     let volumes = ["100",
                 "200",
                 "300",
@@ -59,19 +60,36 @@ class WaterViewController: UIViewController {
           toolBar.barTintColor = .white
           toolBar.tintColor = .systemBlue
           
-          let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-      
         
+
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self.navigationItem.rightBarButtonItem, action: #selector(WaterViewController.dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(WaterViewController.dismissKeyboard))
+
           let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
           label.font = UIFont.boldSystemFont(ofSize: 15)
           label.textAlignment = NSTextAlignment.center
           label.text = "Water Volume (ml)"
           label.textColor = .lightGray
-          
-          let labelButton = UIBarButtonItem(customView: label)
-          
-          toolBar.setItems([doneButton, labelButton], animated: false)
 
+          let labelButton = UIBarButtonItem(customView: label)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
+          toolBar.setItems([doneButton, labelButton], animated: false)
+       // self.navigationItem.rightBarButtonItem = doneButton
+
+
+        toolBar.setItems([cancelButton, labelButton], animated: true)
+        
+
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(WaterViewController.dismissKeyboard))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
+//
+//        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(WaterViewController.dismissKeyboard))
+//        let play = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
+//
+//        navigationItem.rightBarButtonItems = [add, play]
+        
           toolBar.isUserInteractionEnabled = true
           
           waterVolumeTextField.inputAccessoryView = toolBar
@@ -116,6 +134,7 @@ class WaterViewController: UIViewController {
         createToolbar()
         drinkBtnLbl.layer.cornerRadius = 5
         
+        
         let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
                 
@@ -123,7 +142,10 @@ class WaterViewController: UIViewController {
                     histories.append(contentsOf: drink.history!.allObjects as! [History])
                 }
                 let amount = histories.map({$0.amount}).reduce(0, +)
-                print (amount)
+        //print (drinks?.last?.date ?? amount)
+        print(amount)
+        
+        progressDrinks.text = "\(amount)" + " / 2000 ml"
     }
 
     override func viewDidDisappear(_ animated: Bool) {
