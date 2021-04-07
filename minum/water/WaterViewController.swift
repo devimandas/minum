@@ -61,10 +61,8 @@ class WaterViewController: UIViewController {
           toolBar.tintColor = .systemBlue
           
         
-
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self.navigationItem.rightBarButtonItem, action: #selector(WaterViewController.dismissKeyboard))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(WaterViewController.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
 
           let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
           label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -74,21 +72,7 @@ class WaterViewController: UIViewController {
 
           let labelButton = UIBarButtonItem(customView: label)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-          toolBar.setItems([doneButton, labelButton], animated: false)
-       // self.navigationItem.rightBarButtonItem = doneButton
-
-
-        toolBar.setItems([cancelButton, labelButton], animated: true)
-        
-
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(WaterViewController.dismissKeyboard))
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-//
-//        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(WaterViewController.dismissKeyboard))
-//        let play = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-//
-//        navigationItem.rightBarButtonItems = [add, play]
+        toolBar.setItems([cancelButton, labelButton, doneButton], animated: true)
         
           toolBar.isUserInteractionEnabled = true
           
