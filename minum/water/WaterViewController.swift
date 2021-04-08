@@ -15,6 +15,7 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var drinkBtnLbl: UIButton!
     @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var progressDrinks: UILabel!
+    @IBOutlet weak var animasiProgres: UILabel!
     
     let volumes = ["100",
                 "200",
@@ -124,15 +125,6 @@ class WaterViewController: UIViewController {
     
  //       drinkBtnlbl.layer.cornerRadius = 5
 
-        wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
-               lapView.addSubview(wave)
-               wave.startAnimation()
-        
-        createVolumePicker()
-        createToolbar()
-        drinkBtnLbl.layer.cornerRadius = 5
-        
-        
         let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
                 
@@ -144,6 +136,20 @@ class WaterViewController: UIViewController {
         print(amount)
         
         progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+        let resultAnimasi = Double((amount))/Double(targetDrinks)
+        animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+        
+        wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+        wave.progress = Float(resultAnimasi)
+        lapView.addSubview(wave)
+               wave.startAnimation()
+        
+        createVolumePicker()
+        createToolbar()
+        drinkBtnLbl.layer.cornerRadius = 5
+        
+        print(amount)
+        print(targetDrinks)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

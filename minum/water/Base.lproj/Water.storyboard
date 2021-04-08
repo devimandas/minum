@@ -104,6 +104,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Water" id="FcI-LE-gzY"/>
                     <connections>
+                        <outlet property="animasiProgres" destination="GMq-S3-xWc" id="BZa-Ex-aBu"/>
                         <outlet property="drinkBtnLbl" destination="X2I-gR-IY6" id="3RV-hC-KEd"/>
                         <outlet property="lapView" destination="9vi-hE-KHN" id="4fz-J1-t5K"/>
                         <outlet property="progressDrinks" destination="8vU-v6-7KU" id="ni6-HB-Thc"/>
