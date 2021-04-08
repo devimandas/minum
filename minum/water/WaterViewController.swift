@@ -34,6 +34,7 @@ class WaterViewController: UIViewController {
     var selectVolume: String?
     var text:UILabel!
     var name:String!
+    var targetDrinks = 2000
     
     @IBOutlet weak var lapView: UIView!
     
@@ -98,6 +99,19 @@ class WaterViewController: UIViewController {
      
         }
     
+     func doneButton(_ sender: Any) {
+     
+     //self.hapticImpact.impactOccurred()
+     
+     notification.notificationOccurred(.success)
+     //notificationType The type of notification feedback (success,warning,error).
+     
+     guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
+     
+     print(newData)
+     
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -129,7 +143,7 @@ class WaterViewController: UIViewController {
         //print (drinks?.last?.date ?? amount)
         print(amount)
         
-        progressDrinks.text = "\(amount)" + " / 2000 ml"
+        progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
     }
 
     override func viewDidDisappear(_ animated: Bool) {
