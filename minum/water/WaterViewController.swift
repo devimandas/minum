@@ -130,10 +130,8 @@ class WaterViewController: UIViewController {
 
         let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                
-                for drink in drinks! {
-                    histories.append(contentsOf: drink.history!.allObjects as! [History])
-                }
+        
+        histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
                 let amount = histories.map({$0.amount}).reduce(0, +)
         //print (drinks?.last?.date ?? amount)
         print(amount)
