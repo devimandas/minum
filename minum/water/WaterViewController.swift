@@ -116,6 +116,9 @@ class WaterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        let objToBeSent = "Save Drinks"
+                NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: objToBeSent)
+        
         lapView.layer.cornerRadius = lapView.frame.size.width/2
         lapView.clipsToBounds = true
 

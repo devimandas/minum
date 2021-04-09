@@ -17,11 +17,17 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationIdentifier"), object: nil)
+        
         historyTable.dataSource = self
         historyTable.delegate = self
         historyTable.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryCell")
     
     }
+    
+    @objc func methodOfReceivedNotification(notification: Notification) {
+            print("Value of notification : ", notification.object ?? "")
+        }
     
     func applicationDirectoryPath() -> String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String
