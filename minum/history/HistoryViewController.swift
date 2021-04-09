@@ -17,7 +17,13 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("NotificationIdentifier"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedDrinks(notification:)), name: Notification.Name("NotificationSaveDrinks"), object: nil)
+        
+        let objToBeSent = "Save Drinks"
+                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
+        
+//        let objToBeSent = "Save Progress"
+//                NotificationCenter.default.post(name: Notification.Name("NotificationSaveProgress"), object: objToBeSent)
         
         historyTable.dataSource = self
         historyTable.delegate = self
@@ -25,9 +31,13 @@ class HistoryViewController: UIViewController {
     
     }
     
-    @objc func methodOfReceivedNotification(notification: Notification) {
+    @objc func methodOfReceivedDrinks(notification: Notification) {
             print("Value of notification : ", notification.object ?? "")
         }
+    
+//    @objc func methodOfReceivedNotification(notification: Notification) {
+//            print("Value of notification : ", notification.object ?? "")
+//        }
     
     func applicationDirectoryPath() -> String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String

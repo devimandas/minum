@@ -117,7 +117,9 @@ class WaterViewController: UIViewController {
         super.viewDidLoad()
     
         let objToBeSent = "Save Drinks"
-                NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: objToBeSent)
+                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedProgress(notification:)), name: Notification.Name("NotificationSaveProgress"), object: nil)
         
         lapView.layer.cornerRadius = lapView.frame.size.width/2
         lapView.clipsToBounds = true
@@ -127,32 +129,48 @@ class WaterViewController: UIViewController {
         lapView.layer.borderWidth = 5.0
     
  //       drinkBtnlbl.layer.cornerRadius = 5
-
         let drinks = CoreDataManager.shared.fetchDrinks()
-                var histories = [History]()
-        
-        histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
-                let amount = histories.map({$0.amount}).reduce(0, +)
-        //print (drinks?.last?.date ?? amount)
-        print(amount)
-        
-        progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
-        let resultAnimasi = Double((amount))/Double(targetDrinks)
-        animasiProgres.text = "\(Int(resultAnimasi * 100))%"
-        
-        wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
-        wave.progress = Float(resultAnimasi)
-        lapView.addSubview(wave)
-               wave.startAnimation()
-        
+        var histories = [History]()
+        if drinks!.count != 0 {
+            
+            histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+            let amount = histories.map({$0.amount}).reduce(0, +)
+            
+            progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+            
+            
+            wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+            let resultAnimasi = Double((amount))/Double(targetDrinks)
+            animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+            wave.progress = Float(resultAnimasi)
+            lapView.addSubview(wave)
+            wave.startAnimation()
+        }  else if drinks!.count == 0 {
+
+            let amount = 0
+            progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+            
+            
+            wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+            let resultAnimasi = Double((amount))/Double(targetDrinks)
+            animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+            wave.progress = Float(resultAnimasi)
+            lapView.addSubview(wave)
+            wave.startAnimation()
+            print(amount)
+        }
+                
         createVolumePicker()
         createToolbar()
         drinkBtnLbl.layer.cornerRadius = 5
         
-        print(amount)
         print(targetDrinks)
     }
 
+    @objc func methodOfReceivedProgress(notification: Notification) {
+            print("Value of notification : ", notification.object ?? "")
+        }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
