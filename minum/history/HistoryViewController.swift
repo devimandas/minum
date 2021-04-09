@@ -59,7 +59,7 @@ extension HistoryViewController: UITableViewDataSource{
         let arr: [History] = (drinks?[indexPath.row].history!.allObjects as? [History])!
     
         cell.desc.text = "You drank \(arr.map({$0.amount}).reduce(0, +)) ml water"
-        cell.date.text = "\(drinks?.last?.date ?? "nodata")"
+        cell.date.text = "\(drinks?[indexPath.row].date ?? "nodata")"
                  
 
         return cell
