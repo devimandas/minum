@@ -292,6 +292,17 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
           }
           
         }
+    
+    func countTargetDrinks() {
+        if statage > 17 {
+//            if statweight!.count >= 10 {
+//                Int(weight).text * 100
+//                print("Coba target ", statweight as Any)
+//            }
+        }
+        
+        
+    }
 
     
     override func viewDidLoad() {
@@ -304,6 +315,8 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
                     weight.text = statweight
                     height.text = statheight
                 }
+        
+        countTargetDrinks()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

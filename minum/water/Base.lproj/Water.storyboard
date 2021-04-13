@@ -56,22 +56,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2I-gR-IY6">
-                                <rect key="frame" x="30" y="671" width="348" height="46"/>
-                                <color key="backgroundColor" red="0.2784313725" green="0.62352941179999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Done"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="NHQ-uR-2gN"/>
-                                    <constraint firstAttribute="width" constant="348" id="dG7-1h-GI1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="FNF-tO-PvA"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Water (ml)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gX-ES-wzY">
                                 <rect key="frame" x="149" y="580" width="119" height="34"/>
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
@@ -88,11 +72,9 @@
                         <constraints>
                             <constraint firstItem="9vi-hE-KHN" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-150" id="2bp-Fe-wmm"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="8vU-v6-7KU" secondAttribute="trailing" constant="130" id="5qj-sf-DC5"/>
-                            <constraint firstItem="X2I-gR-IY6" firstAttribute="top" secondItem="3gX-ES-wzY" secondAttribute="bottom" constant="57" id="6aG-iz-gPS"/>
                             <constraint firstItem="3gX-ES-wzY" firstAttribute="top" secondItem="8vU-v6-7KU" secondAttribute="bottom" constant="66" id="8d9-dK-0Bz"/>
                             <constraint firstItem="9vi-hE-KHN" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Igk-xs-oeD"/>
                             <constraint firstItem="Df4-GP-Z99" firstAttribute="top" secondItem="9vi-hE-KHN" secondAttribute="bottom" constant="20" id="J7c-EU-NWl"/>
-                            <constraint firstItem="X2I-gR-IY6" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="30" id="J8i-tc-hOD"/>
                             <constraint firstItem="GMq-S3-xWc" firstAttribute="centerY" secondItem="9vi-hE-KHN" secondAttribute="centerY" id="N87-Dl-V3k"/>
                             <constraint firstItem="GMq-S3-xWc" firstAttribute="centerX" secondItem="9vi-hE-KHN" secondAttribute="centerX" id="WNo-2S-5z6"/>
                             <constraint firstAttribute="bottom" secondItem="3gX-ES-wzY" secondAttribute="bottom" constant="282" id="Xf7-K1-qQD"/>
@@ -105,7 +87,6 @@
                     <navigationItem key="navigationItem" title="My Water" id="FcI-LE-gzY"/>
                     <connections>
                         <outlet property="animasiProgres" destination="GMq-S3-xWc" id="BZa-Ex-aBu"/>
-                        <outlet property="drinkBtnLbl" destination="X2I-gR-IY6" id="3RV-hC-KEd"/>
                         <outlet property="lapView" destination="9vi-hE-KHN" id="4fz-J1-t5K"/>
                         <outlet property="progressDrinks" destination="8vU-v6-7KU" id="ni6-HB-Thc"/>
                         <outlet property="waterVolumeTextField" destination="3gX-ES-wzY" id="ZBX-5T-dUC"/>

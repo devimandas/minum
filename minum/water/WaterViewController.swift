@@ -11,7 +11,6 @@ import WaveAnimationView
 
 class WaterViewController: UIViewController {
 
-//    @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var drinkBtnLbl: UIButton!
     @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var progressDrinks: UILabel!
@@ -63,7 +62,7 @@ class WaterViewController: UIViewController {
           toolBar.tintColor = .systemBlue
           
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(finishDrink))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
 
           let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
@@ -86,8 +85,7 @@ class WaterViewController: UIViewController {
           view.endEditing(true)
       }
     
-    //save data and picker to core data
-    @IBAction func saveButton(_ sender: Any) {
+    @objc func finishDrink(_ sender: Any) {
      
      //self.hapticImpact.impactOccurred()
      
@@ -95,21 +93,8 @@ class WaterViewController: UIViewController {
      //notificationType The type of notification feedback (success,warning,error).
      
      guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
-     
-     print(newData)
-     
-        }
-    
-     func doneButton(_ sender: Any) {
-     
-     //self.hapticImpact.impactOccurred()
-     
-     notification.notificationOccurred(.success)
-     //notificationType The type of notification feedback (success,warning,error).
-     
-     guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
-     
-     print(newData)
+     dismissKeyboard()
+     //print(newData)
      
         }
     
@@ -167,7 +152,7 @@ class WaterViewController: UIViewController {
                 
         createVolumePicker()
         createToolbar()
-        drinkBtnLbl.layer.cornerRadius = 5
+       // drinkBtnLbl.layer.cornerRadius = 5
         
         print(targetDrinks)
     }
