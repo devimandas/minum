@@ -116,6 +116,11 @@ class WaterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        if isAuthorize == true {
+                    targetDrinks = 3000
+                }
+        
+        
         let objToBeSent = "Save Drinks"
                 NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
         
@@ -221,4 +226,31 @@ extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         waterVolumeTextField.text = selectVolume
     }
     
+}
+
+extension WaterViewController{
+    private func authorizeHealthKit() {
+          
+          HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+            
+            guard authorized else {
+              
+              let baseMessage = "HealthKit Authorization Failed"
+              
+              if let error = error {
+                print("\(baseMessage). Reason: \(error.localizedDescription)")
+              } else {
+                print(baseMessage)
+              }
+              
+              return
+            }
+            
+            isAuthorize = true
+            defaults.set(isAuthorize, forKey: "Authorize")
+            print("HealthKit Successfully Authorized.")
+          }
+          
+        }
+
 }
