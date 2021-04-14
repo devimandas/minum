@@ -295,8 +295,8 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     
     func countTargetDrinks() {
         if statage > 17 {
-//            if statweight!.count >= 10 {
-//                Int(weight).text * 100
+//            if Int(statweight!).count >= 10 {
+//                Int(statweight!)! * 100
 //                print("Coba target ", statweight as Any)
 //            }
         }

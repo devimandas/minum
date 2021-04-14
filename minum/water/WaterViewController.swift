@@ -10,27 +10,31 @@ import UIKit
 import WaveAnimationView
 
 class WaterViewController: UIViewController {
-
-    @IBOutlet weak var drinkBtnLbl: UIButton!
+    
+    @IBOutlet weak var drinkButton: UIButton!
     @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var progressDrinks: UILabel!
     @IBOutlet weak var animasiProgres: UILabel!
+    @IBOutlet weak var dateWater: UILabel!
+    
+    
     
     let volumes = ["100",
-                "200",
-                "300",
-                "500",
-                "600",
-                "700",
-                "800",
-                "900",
-                "1000"]
+                   "200",
+                   "300",
+                   "500",
+                   "600",
+                   "700",
+                   "800",
+                   "900",
+                   "1000"]
     
-
- //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
-  let notification = UINotificationFeedbackGenerator()
- //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
-       
+    
+    //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
+    let notification = UINotificationFeedbackGenerator()
+    //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
+    
+   // var dateWater: Date
     var selectVolume: String?
     var text:UILabel!
     var name:String!
@@ -41,84 +45,104 @@ class WaterViewController: UIViewController {
     var wave: WaveAnimationView!
     
     func createVolumePicker() {
-          
-          let volumePicker = UIPickerView()
-          volumePicker.delegate = self
-          
-          waterVolumeTextField.inputView = volumePicker
-          
-          //Customizations
-          volumePicker.backgroundColor = .lightGray
-      }
-      
-      
-      func createToolbar() {
-          
-          let toolBar = UIToolbar()
-          toolBar.sizeToFit()
-          
-          //Customizations
-          toolBar.barTintColor = .white
-          toolBar.tintColor = .systemBlue
-          
+        
+        let volumePicker = UIPickerView()
+        volumePicker.delegate = self
+        
+        waterVolumeTextField.inputView = volumePicker
+        
+        //Customizations
+        volumePicker.backgroundColor = .lightGray
+    }
+    
+    
+    @objc func createToolbar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        //Customizations
+        toolBar.barTintColor = .white
+        toolBar.tintColor = .systemBlue
+        
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(finishDrink))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-
-          let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
-          label.font = UIFont.boldSystemFont(ofSize: 15)
-          label.textAlignment = NSTextAlignment.center
-          label.text = "Water Volume (ml)"
-          label.textColor = .lightGray
-
-          let labelButton = UIBarButtonItem(customView: label)
-
+        //  let drinkButton = UIButton(title: "Drink", style: .plain, target: self, action: #selector(WaterViewController.waterVolumeTextField))
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textAlignment = NSTextAlignment.center
+        label.text = "Water Volume (ml)"
+        label.textColor = .lightGray
+        
+        let labelButton = UIBarButtonItem(customView: label)
+        
         toolBar.setItems([cancelButton, labelButton, doneButton], animated: true)
         
-          toolBar.isUserInteractionEnabled = true
-          
-          waterVolumeTextField.inputAccessoryView = toolBar
-      }
-      
-      
-      @objc func dismissKeyboard() {
-          view.endEditing(true)
-      }
+        toolBar.isUserInteractionEnabled = true
+        
+        waterVolumeTextField.inputAccessoryView = toolBar
+    }
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     @objc func finishDrink(_ sender: Any) {
-     
-     //self.hapticImpact.impactOccurred()
-     
-     notification.notificationOccurred(.success)
-     //notificationType The type of notification feedback (success,warning,error).
-     
-     guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
-     dismissKeyboard()
-     //print(newData)
-     
-        }
+        
+        //self.hapticImpact.impactOccurred()
+        
+        notification.notificationOccurred(.success)
+        //notificationType The type of notification feedback (success,warning,error).
+        
+        guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
+        dismissKeyboard()
+        //print(newData)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+//        let date = Date()
+//        let format = DateFormatter()
+//        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let formattedDate = format.string(from: date)
+//        print(formattedDate)
+//
+////        let dateFormatter = NSDateFormatter()
+//        format.dateFormat = "DD/MM/YYYY"
+//            dateWater.text = dateFormatter.stringFromDate(dateWater)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+       // formatter.unitsStyle = .full
+        dateWater.text = formatter.string(for: self)
+
+        
+//        drinkButton.isEnabled = false
+        self.view.addSubview(drinkButton)
+        self.drinkButton.addTarget(self, action: #selector(createToolbar), for: .touchUpInside)
+        
         if isAuthorize == true {
-                    targetDrinks = 3000
-                }
+            targetDrinks = 3000
+        }
         
         
         let objToBeSent = "Save Drinks"
-                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
+        NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedProgress(notification:)), name: Notification.Name("NotificationSaveProgress"), object: nil)
         
         lapView.layer.cornerRadius = lapView.frame.size.width/2
         lapView.clipsToBounds = true
-
+        
         lapView.layer.borderColor = UIColor(rgb: 0x4D80E4).cgColor
         lapView.layer.backgroundColor = UIColor(rgb: 0x253961).cgColor
         lapView.layer.borderWidth = 5.0
-    
- //       drinkBtnlbl.layer.cornerRadius = 5
+        
+        //       drinkBtnlbl.layer.cornerRadius = 5
         let drinks = CoreDataManager.shared.fetchDrinks()
         var histories = [History]()
         if drinks!.count != 0 {
@@ -136,7 +160,7 @@ class WaterViewController: UIViewController {
             lapView.addSubview(wave)
             wave.startAnimation()
         }  else if drinks!.count == 0 {
-
+            
             let amount = 0
             progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
             
@@ -149,44 +173,44 @@ class WaterViewController: UIViewController {
             wave.startAnimation()
             print(amount)
         }
-                
+        
         createVolumePicker()
         createToolbar()
-       // drinkBtnLbl.layer.cornerRadius = 5
+        // drinkBtnLbl.layer.cornerRadius = 5
         
         print(targetDrinks)
     }
-
+    
     @objc func methodOfReceivedProgress(notification: Notification) {
-            print("Value of notification : ", notification.object ?? "")
-        }
+        print("Value of notification : ", notification.object ?? "")
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         wave.stopAnimation()
     }
-
+    
 }
 
 extension UIColor {
-   convenience init(red: Int, green: Int, blue: Int) {
-       assert(red >= 0 && red <= 255, "Invalid red component")
-       assert(green >= 0 && green <= 255, "Invalid green component")
-       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
-       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-   }
-
-   convenience init(rgb: Int) {
-       self.init(
-           red: (rgb >> 16) & 0xFF,
-           green: (rgb >> 8) & 0xFF,
-           blue: rgb & 0xFF
-       )
-   }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
     
-   
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
+    
+    
 }
 
 
@@ -215,27 +239,27 @@ extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension WaterViewController{
     private func authorizeHealthKit() {
-          
-          HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+        
+        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
             
             guard authorized else {
-              
-              let baseMessage = "HealthKit Authorization Failed"
-              
-              if let error = error {
-                print("\(baseMessage). Reason: \(error.localizedDescription)")
-              } else {
-                print(baseMessage)
-              }
-              
-              return
+                
+                let baseMessage = "HealthKit Authorization Failed"
+                
+                if let error = error {
+                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+                } else {
+                    print(baseMessage)
+                }
+                
+                return
             }
             
             isAuthorize = true
             defaults.set(isAuthorize, forKey: "Authorize")
             print("HealthKit Successfully Authorized.")
-          }
-          
         }
-
+        
+    }
+    
 }
