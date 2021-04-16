@@ -201,67 +201,65 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate {
     }
     
     @IBAction func fasting(_ sender: Any) {
-//        let content = UNMutableNotificationContent()
-//        content.title = "Weekly Staff Meeting"
-//        content.body = "Every Tuesday at 2pm"
-//
-//        var dateComponents = DateComponents()
-//        dateComponents.calendar = Calendar.current
-//
-//        dateComponents.weekday = 2  // Tuesday
-//        dateComponents.hour = 14    // 14:00 hours
-//        dateComponents.minute = 46
-//
-//        // Create the trigger as a repeating event.
-//        let trigger = UNCalendarNotificationTrigger(
-//                 dateMatching: dateComponents, repeats: true)
-//
-//
-//        let uuidString = UUID().uuidString
-//        let request = UNNotificationRequest(identifier: uuidString,
-//                    content: content, trigger: trigger)
-//
-//        // Schedule the request with the system.
-//        let notificationCenter = UNUserNotificationCenter.current()
-//        notificationCenter.add(request) { (error) in
-//           if error != nil {
-//              // Handle any errors.
-//           }
-//        }
-        
-        
-        if ((sender as AnyObject).isOn == true) {
-        print("Yes")
-            
-            let notification = UILocalNotification()
-            
-            var dateComponents = DateComponents()
-            dateComponents.calendar = Calendar.current
+        let content = UNMutableNotificationContent()
+        content.title = "Weekly Staff Meeting"
+        content.body = "Every Tuesday at 2pm"
 
-              /* Time and timezone settings */
-            notification.fireDate = NSDate(timeIntervalSinceNow: 8.0) as Date
-            notification.repeatInterval = NSCalendar.Unit.day
-            notification.timeZone = NSCalendar.current.timeZone
-              notification.alertBody = "A new item is downloaded."
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
 
-              /* Action settings */
-              notification.hasAction = true
-              notification.alertAction = "View"
+       // dateComponents.weekday = 2  // Tuesday
+//        dateComponents.hour = 06    // 14:00 hours
+//        dateComponents.hour = 12
+//        dateComponents.minute = 00
 
-              /* Badge settings */
-              notification.applicationIconBadgeNumber =
-                UIApplication.shared.applicationIconBadgeNumber + 1
-              /* Additional information, user info */
-              notification.userInfo = [
-                "Key 1" : "Value 1",
-                "Key 2" : "Value 2"
-              ]
-
-              /* Schedule the notification */
-            UIApplication.shared.scheduleLocalNotification(notification)
-            } else {
-        print("No")
+        var alarmMorning: DateComponents {
+            dateComponents.hour = 00
+            dateComponents.minute = 32
+            return dateComponents
         }
+        
+        var alarmAfternoon: DateComponents {
+            dateComponents.hour = 00
+            dateComponents.minute = 33
+            return dateComponents
+        }
+        
+        var alarmEvening : DateComponents {
+            dateComponents.hour = 00
+            dateComponents.minute = 34
+            return dateComponents
+        }
+        
+        var alarmTest : DateComponents {
+            dateComponents.hour = 00
+            dateComponents.minute = 35
+            return dateComponents
+        }
+        
+        struct allAlarm {
+            var alarmMorning : DateComponents
+            var alarmAfternoon : DateComponents
+        }
+        
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: dateComponents, repeats: true)
+
+
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                    content: content, trigger: trigger)
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+              // Handle any errors.
+           }
+        }
+        
+
     }
     
     

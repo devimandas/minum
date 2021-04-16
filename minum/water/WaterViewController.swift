@@ -16,7 +16,7 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var progressDrinks: UILabel!
     @IBOutlet weak var animasiProgres: UILabel!
     @IBOutlet weak var dateWater: UILabel!
-    
+ //   @IBOutlet weak var activitiesTextField: UITextField!
     
     
     let volumes = ["100",
@@ -29,13 +29,17 @@ class WaterViewController: UIViewController {
                    "900",
                    "1000"]
     
+//    let activites = ["Light",
+//                     "Medium",
+//                     "Hard"]
     
     //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
     let notification = UINotificationFeedbackGenerator()
     //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
     
-   // var dateWater: Date
+    // var dateWater: Date
     var selectVolume: String?
+//    var selectActivities : String?
     var text:UILabel!
     var name:String!
     var targetDrinks = 2000
@@ -43,6 +47,17 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var lapView: UIView!
     
     var wave: WaveAnimationView!
+    
+//    func createActivitiesPicker() {
+//        
+//        let activitiesPicker = UIPickerView()
+//        activitiesPicker.delegate = self
+//        
+//        waterVolumeTextField.inputView = activitiesPicker
+//        
+//        //Customizations
+//        activitiesPicker.backgroundColor = .lightGray
+//    }
     
     func createVolumePicker() {
         
@@ -103,25 +118,29 @@ class WaterViewController: UIViewController {
         
     }
     
+    @IBAction func drinkButtonTap(_ sender: UIButton) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let date = Date()
-//        let format = DateFormatter()
-//        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        let formattedDate = format.string(from: date)
-//        print(formattedDate)
-//
-////        let dateFormatter = NSDateFormatter()
-//        format.dateFormat = "DD/MM/YYYY"
-//            dateWater.text = dateFormatter.stringFromDate(dateWater)
+        //        let date = Date()
+        //        let format = DateFormatter()
+        //        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //        let formattedDate = format.string(from: date)
+        //        print(formattedDate)
+        //
+        ////        let dateFormatter = NSDateFormatter()
+        //        format.dateFormat = "DD/MM/YYYY"
+        //            dateWater.text = dateFormatter.stringFromDate(dateWater)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-       // formatter.unitsStyle = .full
+        // formatter.unitsStyle = .full
         dateWater.text = formatter.string(for: self)
-
         
-//        drinkButton.isEnabled = false
+        
+        //        drinkButton.isEnabled = false
         self.view.addSubview(drinkButton)
         self.drinkButton.addTarget(self, action: #selector(createToolbar), for: .touchUpInside)
         
@@ -236,6 +255,29 @@ extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
 }
+
+////UIPickerview
+//extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return activites.count
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return activites[row]
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//        selectActivities = activites[row]
+//        activitiesTextField.text = selectActivities
+//    }
+//
+//}
 
 extension WaterViewController{
     private func authorizeHealthKit() {
