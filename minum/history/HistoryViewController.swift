@@ -17,10 +17,10 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedDrinks(notification:)), name: Notification.Name("NotificationSaveDrinks"), object: nil)
-        
-        let objToBeSent = "Save Drinks"
-                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedDrinks(notification:)), name: Notification.Name("NotificationSaveDrinks"), object: nil)
+//
+//        let objToBeSent = "Save Drinks"
+//                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
         
 //        let objToBeSent = "Save Progress"
 //                NotificationCenter.default.post(name: Notification.Name("NotificationSaveProgress"), object: objToBeSent)
@@ -31,9 +31,9 @@ class HistoryViewController: UIViewController {
     
     }
     
-    @objc func methodOfReceivedDrinks(notification: Notification) {
-            print("Value of notification : ", notification.object ?? "")
-        }
+//    @objc func methodOfReceivedDrinks(notification: Notification) {
+//            print("Value of notification : ", notification.object ?? "")
+//        }
     
 //    @objc func methodOfReceivedNotification(notification: Notification) {
 //            print("Value of notification : ", notification.object ?? "")

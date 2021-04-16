@@ -149,10 +149,10 @@ class WaterViewController: UIViewController {
         }
         
         
-        let objToBeSent = "Save Drinks"
-        NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedProgress(notification:)), name: Notification.Name("NotificationSaveProgress"), object: nil)
+//        let objToBeSent = "Save Drinks"
+//        NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
+//
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedProgress(notification:)), name: Notification.Name("NotificationSaveProgress"), object: nil)
         
         lapView.layer.cornerRadius = lapView.frame.size.width/2
         lapView.clipsToBounds = true
@@ -200,9 +200,9 @@ class WaterViewController: UIViewController {
         print(targetDrinks)
     }
     
-    @objc func methodOfReceivedProgress(notification: Notification) {
-        print("Value of notification : ", notification.object ?? "")
-    }
+//    @objc func methodOfReceivedProgress(notification: Notification) {
+//        print("Value of notification : ", notification.object ?? "")
+//    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
