@@ -9,14 +9,16 @@
 import UIKit
 import WaveAnimationView
 
+var statActivities = defaults.string(forKey: "activities")
+
 class WaterViewController: UIViewController {
     
-    @IBOutlet weak var drinkButton: UIButton!
     @IBOutlet weak var waterVolumeTextField: UITextField!
     @IBOutlet weak var progressDrinks: UILabel!
     @IBOutlet weak var animasiProgres: UILabel!
     @IBOutlet weak var dateWater: UILabel!
- //   @IBOutlet weak var activitiesTextField: UITextField!
+    @IBOutlet weak var activitiesButton: UIButton!
+    //   @IBOutlet weak var activitiesTextField: UITextField!
     
     
     let volumes = ["100",
@@ -118,41 +120,65 @@ class WaterViewController: UIViewController {
         
     }
     
-    @IBAction func drinkButtonTap(_ sender: UIButton) {
+    @objc private func activitiesTapButton(_ sender: Any){
+        let imagePickerController = UIImagePickerController()
         
+        //Alert Notification
+        let actionSheet = UIAlertController(title: "Add Activities", message: "You must enter an activity type : ", preferredStyle: .alert)
+        
+        //Photo From Camera
+        actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
+            self.activitiesButton.setTitle("Strenuous", for: .normal)
+           // statgender = biologicalSexUH.stringRepresentation
+            defaults.set(statActivities ?? "", forKey: "activities")
+            
+           // self.activitiesButton.setTitle(statActivities, for: .normal)
+         //   print(statActivities)
+        }))
+        
+        //Photo from Photo Library
+        actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
+            self.activitiesButton.setTitle("Medium", for: .normal)
+        }))
+        
+        //Photo from Photo Library
+        actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
+            self.activitiesButton.setTitle("Light", for: .normal)
+        }))
+        
+        //Cancel Button
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        self.present(actionSheet, animated: true, completion: nil)
+        
+        //Popover Position
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        let date = Date()
-        //        let format = DateFormatter()
-        //        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        //        let formattedDate = format.string(from: date)
-        //        print(formattedDate)
-        //
-        ////        let dateFormatter = NSDateFormatter()
-        //        format.dateFormat = "DD/MM/YYYY"
-        //            dateWater.text = dateFormatter.stringFromDate(dateWater)
+//        if activitiesTapButton.setTitle == "Strenuous" {
+//            //activitiesButton.text = statActivities
+//            activitiesButton.setTitle(statActivities, for: <#UIControl.State#>)
+//            print(statActivities)
+//        }
+
+       // print(statActivities)
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         // formatter.unitsStyle = .full
         dateWater.text = formatter.string(for: self)
         
         
-        //        drinkButton.isEnabled = false
-        self.view.addSubview(drinkButton)
-        self.drinkButton.addTarget(self, action: #selector(createToolbar), for: .touchUpInside)
-        
         if isAuthorize == true {
             targetDrinks = 3000
         }
-        
-        
-//        let objToBeSent = "Save Drinks"
-//        NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedProgress(notification:)), name: Notification.Name("NotificationSaveProgress"), object: nil)
         
         lapView.layer.cornerRadius = lapView.frame.size.width/2
         lapView.clipsToBounds = true
@@ -197,6 +223,7 @@ class WaterViewController: UIViewController {
         createToolbar()
         // drinkBtnLbl.layer.cornerRadius = 5
         
+        self.activitiesButton.addTarget(self, action: #selector(activitiesTapButton), for: .touchUpInside)
         print(targetDrinks)
     }
     

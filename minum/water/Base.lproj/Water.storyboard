@@ -57,50 +57,52 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Water (ml)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gX-ES-wzY">
-                                <rect key="frame" x="149" y="580" width="119" height="34"/>
+                                <rect key="frame" x="148" y="624" width="127.5" height="34"/>
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Mqd-Ym-QVP"/>
-                                    <constraint firstAttribute="width" constant="119" id="z1v-Wv-Zv7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-fz-zQt">
-                                <rect key="frame" x="25" y="655" width="366" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="drinkButton"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtk-P4-CJy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtk-P4-CJy">
                                 <rect key="frame" x="189" y="140" width="36" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFS-FD-qJF">
+                                <rect key="frame" x="159" y="555" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <state key="normal" title="Activities"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9vi-hE-KHN" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" constant="-150" id="2bp-Fe-wmm"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="8vU-v6-7KU" secondAttribute="trailing" constant="130" id="5qj-sf-DC5"/>
-                            <constraint firstItem="3gX-ES-wzY" firstAttribute="top" secondItem="8vU-v6-7KU" secondAttribute="bottom" constant="66" id="8d9-dK-0Bz"/>
+                            <constraint firstItem="3gX-ES-wzY" firstAttribute="top" secondItem="8vU-v6-7KU" secondAttribute="bottom" constant="110" id="8d9-dK-0Bz"/>
+                            <constraint firstItem="jtk-P4-CJy" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="AHt-An-FL4"/>
                             <constraint firstItem="9vi-hE-KHN" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Igk-xs-oeD"/>
                             <constraint firstItem="Df4-GP-Z99" firstAttribute="top" secondItem="9vi-hE-KHN" secondAttribute="bottom" constant="20" id="J7c-EU-NWl"/>
                             <constraint firstItem="GMq-S3-xWc" firstAttribute="centerY" secondItem="9vi-hE-KHN" secondAttribute="centerY" id="N87-Dl-V3k"/>
+                            <constraint firstItem="jtk-P4-CJy" firstAttribute="centerX" secondItem="GMq-S3-xWc" secondAttribute="centerX" id="UA5-KM-gPu"/>
                             <constraint firstItem="GMq-S3-xWc" firstAttribute="centerX" secondItem="9vi-hE-KHN" secondAttribute="centerX" id="WNo-2S-5z6"/>
-                            <constraint firstAttribute="bottom" secondItem="3gX-ES-wzY" secondAttribute="bottom" constant="282" id="Xf7-K1-qQD"/>
+                            <constraint firstAttribute="bottom" secondItem="3gX-ES-wzY" secondAttribute="bottom" constant="238" id="Xf7-K1-qQD"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="3gX-ES-wzY" secondAttribute="trailing" constant="138.5" id="bZ7-hn-qQV"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Df4-GP-Z99" secondAttribute="trailing" constant="16" id="erJ-cs-ytm"/>
                             <constraint firstItem="Df4-GP-Z99" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="qn3-r2-q7e"/>
-                            <constraint firstItem="3gX-ES-wzY" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="149" id="s8g-B6-Klv"/>
+                            <constraint firstItem="3gX-ES-wzY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="s8g-B6-Klv"/>
                             <constraint firstItem="8vU-v6-7KU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="140" id="ueM-4n-Vxs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Water" id="FcI-LE-gzY"/>
                     <connections>
+                        <outlet property="activitiesButton" destination="wFS-FD-qJF" id="DX9-ae-vkw"/>
                         <outlet property="animasiProgres" destination="GMq-S3-xWc" id="BZa-Ex-aBu"/>
                         <outlet property="dateWater" destination="jtk-P4-CJy" id="byP-lC-OZn"/>
-                        <outlet property="drinkButton" destination="IPE-fz-zQt" id="3V6-S3-MuU"/>
                         <outlet property="lapView" destination="9vi-hE-KHN" id="4fz-J1-t5K"/>
                         <outlet property="progressDrinks" destination="8vU-v6-7KU" id="ni6-HB-Thc"/>
                         <outlet property="waterVolumeTextField" destination="3gX-ES-wzY" id="ZBX-5T-dUC"/>
@@ -164,7 +166,6 @@
     </scenes>
     <resources>
         <image name="doc.plaintext" catalog="system" width="115" height="128"/>
-        <image name="drinkButton" width="366" height="54"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="watertap" width="18" height="24"/>
         <systemColor name="linkColor">
