@@ -24,6 +24,8 @@ var isAuthorize = defaults.bool(forKey: "Authorize")
 
 //let localnotificationmanager = LocalNotificationManager()
 
+var newInt = 0
+
 class SettingsViewController: UITableViewController, UIPickerViewDelegate, ObservableObject {
     
     
@@ -271,45 +273,55 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         
         //RUMUS 1 : Usia
         if statage < 17 {
+            
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             var intWeight = Int(weightForm)
             //if intWeight != nil {
             if intWeight! <= 10 {
                 let newWeight = intWeight! * 100
                 intWeight = newWeight
-                print (Int(intWeight!))
+                newInt = Int(intWeight!)
             } else if intWeight! >= 11 || intWeight! <= 20 {
                 let newWeight = 1000+50*(20 - intWeight!)
                 intWeight = newWeight
-                print (Int(intWeight!))
+                newInt = Int(intWeight!)
             } else if intWeight! >= 21 || intWeight! <= 70 {
                 let newWeight = 1500+20*(70 - intWeight!)
                 intWeight = newWeight
-                print (Int(intWeight!))
+                newInt = Int(intWeight!)
             }
+            
             // }
         } else if statage > 17 {
+            
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             var intWeight = Int(weightForm)
             let newWeight = 50 * intWeight!
             intWeight = newWeight
-            print (Int(intWeight!))
+            newInt = Int(intWeight!)
         }
     }
     
-    //    func countRumus2() {
-    //        //RUMUS 2 : Jenis Kelamin
-    //        if statgender == "Female" {
-    //            countRumus1()
-    //            57/100 * (Int(intWeight!))
-    //        }
-    //    }
+//        func countRumus2() {
+            //RUMUS 2 : Jenis Kelamin
+//            if statgender == "Female" {
+//                countRumus1()
+//                57/100 * newInt
+//            }
+//        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(statage)
-        
-        
+//        print(statage)
+        countRumus1()
+        print("check : ",newInt)
+        if statgender == "Female" {
+//            countRumus1()
+            let devide = Float(57) / Float(100)
+            let test = devide * Float(newInt)
+            print(test)
+//            print("check : ",newInt)
+        }
         
         if isAuthorize == true {
             age.text = "\(statage)"

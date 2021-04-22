@@ -45,6 +45,7 @@ class WaterViewController: UIViewController {
     var text:UILabel!
     var name:String!
     var targetDrinks = 2000
+    var activities:String?
     
     @IBOutlet weak var lapView: UIView!
     
@@ -129,26 +130,29 @@ class WaterViewController: UIViewController {
         //Photo From Camera
         actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
             self.activitiesButton.setTitle("Strenuous", for: .normal)
-           // statgender = biologicalSexUH.stringRepresentation
-            defaults.set(statActivities ?? "", forKey: "activities")
-            
-           // self.activitiesButton.setTitle(statActivities, for: .normal)
-         //   print(statActivities)
+            self.activities = "Strenuous"
+            print("tes print activities", self.activities!)
         }))
         
         //Photo from Photo Library
         actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
             self.activitiesButton.setTitle("Medium", for: .normal)
+            self.activities = "Medium"
+            print("tes print activities", self.activities!)
         }))
         
         //Photo from Photo Library
         actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
             self.activitiesButton.setTitle("Light", for: .normal)
+            self.activities = "Light"
+            print("tes print activities", self.activities!)
         }))
         
         //Cancel Button
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 //        self.present(actionSheet, animated: true, completion: nil)
+        
+        
         
         //Popover Position
         if let popoverController = actionSheet.popoverPresentationController {
@@ -161,14 +165,7 @@ class WaterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if activitiesTapButton.setTitle == "Strenuous" {
-//            //activitiesButton.text = statActivities
-//            activitiesButton.setTitle(statActivities, for: <#UIControl.State#>)
-//            print(statActivities)
-//        }
-
-       // print(statActivities)
+        print(activities)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
