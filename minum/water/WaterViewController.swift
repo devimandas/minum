@@ -18,7 +18,6 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var animasiProgres: UILabel!
     @IBOutlet weak var dateWater: UILabel!
     @IBOutlet weak var activitiesButton: UIButton!
-    //   @IBOutlet weak var activitiesTextField: UITextField!
     
     
     let volumes = ["100",
@@ -31,17 +30,12 @@ class WaterViewController: UIViewController {
                    "900",
                    "1000"]
     
-//    let activites = ["Light",
-//                     "Medium",
-//                     "Hard"]
-    
     //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
     let notification = UINotificationFeedbackGenerator()
     //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
     
     // var dateWater: Date
     var selectVolume: String?
-//    var selectActivities : String?
     var text:UILabel!
     var name:String!
     var targetDrinks = 2000
@@ -50,17 +44,6 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var lapView: UIView!
     
     var wave: WaveAnimationView!
-    
-//    func createActivitiesPicker() {
-//        
-//        let activitiesPicker = UIPickerView()
-//        activitiesPicker.delegate = self
-//        
-//        waterVolumeTextField.inputView = activitiesPicker
-//        
-//        //Customizations
-//        activitiesPicker.backgroundColor = .lightGray
-//    }
     
     func createVolumePicker() {
         
@@ -71,6 +54,57 @@ class WaterViewController: UIViewController {
         
         //Customizations
         volumePicker.backgroundColor = .lightGray
+    }
+    
+    func countRumus1() {
+        if isAuthorize == true {
+            //RUMUS 1 : Usia
+            if statage < 17 {
+                
+                let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+                var intWeight = Int(weightForm)
+                //if intWeight != nil {
+                if intWeight! <= 10 {
+                    let newWeight = intWeight! * 100
+                    intWeight = newWeight
+                    newInt = Int(intWeight!)
+                } else if intWeight! >= 11 || intWeight! <= 20 {
+                    let newWeight = 1000+50*(20 - intWeight!)
+                    intWeight = newWeight
+                    newInt = Int(intWeight!)
+                } else if intWeight! >= 21 || intWeight! <= 70 {
+                    let newWeight = 1500+20*(70 - intWeight!)
+                    intWeight = newWeight
+                    newInt = Int(intWeight!)
+                }
+                
+                // }
+            } else if statage > 17 {
+                
+                let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+                var intWeight = Int(weightForm)
+                let newWeight = 50 * intWeight!
+                intWeight = newWeight
+                newInt = Int(intWeight!)
+            }
+            
+            //RUMUS 2 : Jenis Kelamin
+            print("check : ",newInt)
+            if statgender == "Male" {
+                let devide = Float(57) / Float(100)
+                let test = devide * Float(newInt)
+                print("rumus jenis kelamin laki", test)
+            } else {
+                let devide = Float(55) / Float(100)
+                let test = devide * Float(newInt)
+                print("rumus jenis kelamin perempuan", test)
+            }
+            
+            //RUMUS 3 : Faktor Aktivitas
+            
+        
+        }
+        
     }
     
     
@@ -86,7 +120,6 @@ class WaterViewController: UIViewController {
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(finishDrink))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(WaterViewController.dismissKeyboard))
-        //  let drinkButton = UIButton(title: "Drink", style: .plain, target: self, action: #selector(WaterViewController.waterVolumeTextField))
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: 40))
         label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -166,6 +199,7 @@ class WaterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(activities)
+        countRumus1()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -279,29 +313,6 @@ extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
 }
-
-////UIPickerview
-//extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-//
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return activites.count
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return activites[row]
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//
-//        selectActivities = activites[row]
-//        activitiesTextField.text = selectActivities
-//    }
-//
-//}
 
 extension WaterViewController{
     private func authorizeHealthKit() {
