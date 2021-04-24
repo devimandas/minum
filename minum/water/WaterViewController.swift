@@ -165,6 +165,10 @@ class WaterViewController: UIViewController {
             self.activitiesButton.setTitle("Strenuous", for: .normal)
             self.activities = "Strenuous"
             print("tes print activities", self.activities!)
+            
+            
+            //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
+            defaults.set(self.activities, forKey: "activities")
         }))
         
         //Photo from Photo Library
@@ -172,6 +176,8 @@ class WaterViewController: UIViewController {
             self.activitiesButton.setTitle("Medium", for: .normal)
             self.activities = "Medium"
             print("tes print activities", self.activities!)
+            
+            defaults.set(self.activities, forKey: "activities")
         }))
         
         //Photo from Photo Library
@@ -179,6 +185,8 @@ class WaterViewController: UIViewController {
             self.activitiesButton.setTitle("Light", for: .normal)
             self.activities = "Light"
             print("tes print activities", self.activities!)
+            
+            defaults.set(self.activities, forKey: "activities")
         }))
         
         //Cancel Button
@@ -196,9 +204,24 @@ class WaterViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
+    func setActivities(){
+        if (defaults.object(forKey: "activities") == nil) {
+            print("tes activities")
+        } else {
+            
+            activitiesButton.setTitle(statActivities, for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setActivities()
+        
         print(activities)
+        
+        
+        
         countRumus1()
         
         let formatter = DateFormatter()
