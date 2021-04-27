@@ -99,10 +99,45 @@ class WaterViewController: UIViewController {
                 let test = devide * Float(newInt)
                 print("rumus jenis kelamin perempuan", test)
             }
-            
-            //RUMUS 3 : Faktor Aktivitas
-            
+        }
         
+        //RUMUS 3 : Faktor Aktivitas
+        var AMB : Double
+        if (defaults.object(forKey: "activities") == nil) {
+            print("tes aktivitas masih kosong")
+        } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
+            print("tes aktivitas Berat")
+            
+            if statgender == "Male" {
+                AMB = 2.10
+                print(AMB)
+            } else if statgender == "Female" {
+                AMB = 2.00
+                print("woy print", AMB)
+            }
+            
+        } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
+            print("tes aktivitas Sedang")
+            
+            print("tes aktivitas Berat")
+            if statgender == "Male" {
+                AMB = 1.76
+                print(AMB)
+            } else if statgender == "Female" {
+                AMB = 1.70
+                print("woy print", AMB)
+            }
+            
+        } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
+            print("tes aktivitas Ringan")
+            
+            if statgender == "Male" {
+                AMB = 1.56
+                print(AMB)
+            } else if statgender == "Female" {
+                AMB = 1.55
+                print("woy print", AMB)
+            }
         }
         
     }
@@ -164,7 +199,7 @@ class WaterViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
             self.activitiesButton.setTitle("Strenuous", for: .normal)
             self.activities = "Strenuous"
-            print("tes print activities", self.activities!)
+           // print("tes print activities", self.activities!)
             
             
             //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
@@ -175,7 +210,7 @@ class WaterViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
             self.activitiesButton.setTitle("Medium", for: .normal)
             self.activities = "Medium"
-            print("tes print activities", self.activities!)
+           // print("tes print activities", self.activities!)
             
             defaults.set(self.activities, forKey: "activities")
         }))
@@ -184,7 +219,7 @@ class WaterViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
             self.activitiesButton.setTitle("Light", for: .normal)
             self.activities = "Light"
-            print("tes print activities", self.activities!)
+           // print("tes print activities", self.activities!)
             
             defaults.set(self.activities, forKey: "activities")
         }))
