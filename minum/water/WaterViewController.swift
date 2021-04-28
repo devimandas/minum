@@ -90,56 +90,77 @@ class WaterViewController: UIViewController {
             
             //RUMUS 2 : Jenis Kelamin
             print("check : ",newInt)
+            
+            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+            
             if statgender == "Male" {
                 let devide = Float(57) / Float(100)
-                let test = devide * Float(newInt)
+                let test = devide * Float(weightForm)!
                 print("rumus jenis kelamin laki", test)
             } else {
                 let devide = Float(55) / Float(100)
-                let test = devide * Float(newInt)
+                let test = devide * Float(weightForm)!
                 print("rumus jenis kelamin perempuan", test)
             }
         }
         
         //RUMUS 3 : Faktor Aktivitas
-        var AMB : Double
+        //Menentukan Faktor Aktifitas
+        var faktorAktivitas : Double
         if (defaults.object(forKey: "activities") == nil) {
             print("tes aktivitas masih kosong")
         } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
             print("tes aktivitas Berat")
             
             if statgender == "Male" {
-                AMB = 2.10
-                print(AMB)
+                faktorAktivitas = 2.10
+                print(faktorAktivitas)
             } else if statgender == "Female" {
-                AMB = 2.00
-                print("woy print", AMB)
+                faktorAktivitas = 2.00
+                print("woy print", faktorAktivitas)
             }
             
         } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
             print("tes aktivitas Sedang")
-            
-            print("tes aktivitas Berat")
+
             if statgender == "Male" {
-                AMB = 1.76
-                print(AMB)
+                faktorAktivitas = 1.76
+                print(faktorAktivitas)
             } else if statgender == "Female" {
-                AMB = 1.70
-                print("woy print", AMB)
+                faktorAktivitas = 1.70
+                print("woy print", faktorAktivitas)
             }
             
         } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
             print("tes aktivitas Ringan")
             
             if statgender == "Male" {
-                AMB = 1.56
-                print(AMB)
+                faktorAktivitas = 1.56
+                print(faktorAktivitas)
             } else if statgender == "Female" {
-                AMB = 1.55
-                print("woy print", AMB)
+                faktorAktivitas = 1.55
+                print("woy print", faktorAktivitas)
             }
         }
         
+        //Menentukan AMB
+        var AMB : Double
+        let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+        let heightForm = statheight!.replacingOccurrences(of: " cm", with: "")
+        
+        if statgender == "Male" {
+            AMB = Double(66.5 + (13.7 * Float(weightForm)!)) + (5.0 * Double(Float(heightForm)!)) - (6.8 * Double(statage))
+            print("hasil male AMB", AMB)
+        } else if statgender == "Female" {
+            AMB = Double(66.5 + (9.6 * Float(weightForm)!)) + (1.8 * Double(Float(heightForm)!)) - (4.7 * Double(statage))
+            print("hasil female AMB", AMB)
+        }
+        
+        //Menentukan Total Kalori (kkal)
+        var totalKalori : Double
+      //  totalKalori = faktorAktivitas * AMB
+        
+       // print(totalKalori)
     }
     
     
