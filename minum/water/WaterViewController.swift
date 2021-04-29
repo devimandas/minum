@@ -106,61 +106,66 @@ class WaterViewController: UIViewController {
         
         //RUMUS 3 : Faktor Aktivitas
         //Menentukan Faktor Aktifitas
-        var faktorAktivitas : Double
-        if (defaults.object(forKey: "activities") == nil) {
-            print("tes aktivitas masih kosong")
-        } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
-            print("tes aktivitas Berat")
-            
-            if statgender == "Male" {
-                faktorAktivitas = 2.10
-                print(faktorAktivitas)
-            } else if statgender == "Female" {
-                faktorAktivitas = 2.00
-                print("woy print", faktorAktivitas)
-            }
-            
-        } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
-            print("tes aktivitas Sedang")
-
-            if statgender == "Male" {
-                faktorAktivitas = 1.76
-                print(faktorAktivitas)
-            } else if statgender == "Female" {
-                faktorAktivitas = 1.70
-                print("woy print", faktorAktivitas)
-            }
-            
-        } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
-            print("tes aktivitas Ringan")
-            
-            if statgender == "Male" {
-                faktorAktivitas = 1.56
-                print(faktorAktivitas)
-            } else if statgender == "Female" {
-                faktorAktivitas = 1.55
-                print("woy print", faktorAktivitas)
-            }
-        }
-        
         //Menentukan AMB
         var AMB : Double
+        var faktorAktivitas : Double
+        var totalKalori : Double
         let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
         let heightForm = statheight!.replacingOccurrences(of: " cm", with: "")
         
         if statgender == "Male" {
             AMB = Double(66.5 + (13.7 * Float(weightForm)!)) + (5.0 * Double(Float(heightForm)!)) - (6.8 * Double(statage))
             print("hasil male AMB", AMB)
+            
+            if (defaults.object(forKey: "activities") == nil) {
+                print("tes aktivitas masih kosong")
+            } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
+                print("tes aktivitas Berat")
+                faktorAktivitas = 2.10
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+            } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
+                print("tes aktivitas Sedang")
+                faktorAktivitas = 1.76
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+            } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
+                print("tes aktivitas Ringan")
+                faktorAktivitas = 1.56
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+            }
+            
         } else if statgender == "Female" {
             AMB = Double(66.5 + (9.6 * Float(weightForm)!)) + (1.8 * Double(Float(heightForm)!)) - (4.7 * Double(statage))
             print("hasil female AMB", AMB)
+            
+            if (defaults.object(forKey: "activities") == nil) {
+                print("tes aktivitas masih kosong")
+            } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
+                print("tes aktivitas Berat")
+                faktorAktivitas = 2.00
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+                
+            } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
+                print("tes aktivitas Sedang")
+                faktorAktivitas = 1.70
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+                
+            } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
+                print("tes aktivitas Ringan")
+                faktorAktivitas = 1.55
+                totalKalori = faktorAktivitas * AMB
+                print("Total Aktivitas", totalKalori)
+            }
         }
         
-        //Menentukan Total Kalori (kkal)
-        var totalKalori : Double
-      //  totalKalori = faktorAktivitas * AMB
+        //RUMUS 4
         
-       // print(totalKalori)
+        
+
     }
     
     
