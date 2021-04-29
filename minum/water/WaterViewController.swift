@@ -68,14 +68,17 @@ class WaterViewController: UIViewController {
                     let newWeight = intWeight! * 100
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 11 || intWeight! <= 20 {
                     let newWeight = 1000+50*(20 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 21 || intWeight! <= 70 {
                     let newWeight = 1500+20*(70 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    print("hasil rumus 1",newInt)
                 }
                 
                 // }
@@ -86,21 +89,20 @@ class WaterViewController: UIViewController {
                 let newWeight = 50 * intWeight!
                 intWeight = newWeight
                 newInt = Int(intWeight!)
+                print("hasil rumus 1", newInt)
             }
             
             //RUMUS 2 : Jenis Kelamin
-            print("check : ",newInt)
-            
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             
             if statgender == "Male" {
                 let devide = Float(57) / Float(100)
                 let test = devide * Float(weightForm)!
-                print("rumus jenis kelamin laki", test)
+                print("hasil rumus 2", test)
             } else {
                 let devide = Float(55) / Float(100)
                 let test = devide * Float(weightForm)!
-                print("rumus jenis kelamin perempuan", test)
+                print("hasil rumus 2", test)
             }
         }
         
@@ -120,20 +122,20 @@ class WaterViewController: UIViewController {
             if (defaults.object(forKey: "activities") == nil) {
                 print("tes aktivitas masih kosong")
             } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
-                print("tes aktivitas Berat")
+                //Faktor Aktivitas Berat
                 faktorAktivitas = 2.10
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
-                print("tes aktivitas Sedang")
+                //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.76
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
-                print("tes aktivitas Ringan")
+                //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.56
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
             }
             
         } else if statgender == "Female" {
@@ -143,29 +145,56 @@ class WaterViewController: UIViewController {
             if (defaults.object(forKey: "activities") == nil) {
                 print("tes aktivitas masih kosong")
             } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
-                print("tes aktivitas Berat")
+                //Faktor Aktivitas Berat
                 faktorAktivitas = 2.00
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
                 
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
-                print("tes aktivitas Sedang")
+                //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.70
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
                 
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
-                print("tes aktivitas Ringan")
+                //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.55
                 totalKalori = faktorAktivitas * AMB
-                print("Total Aktivitas", totalKalori)
+                print("hasil rumus 3", totalKalori)
             }
         }
         
         //RUMUS 4
-        
-        
-
+        if statage < 17 {
+            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+            var intWeight = Int(weightForm)
+            //if intWeight != nil {
+            if intWeight! <= 10 {
+                let newWeight = intWeight! * 100
+                intWeight = newWeight
+                newInt = Int(intWeight!)
+                print("hasil rumus 4", newInt)
+                
+            } else if intWeight! <= 20 {
+                let diffWeight = intWeight! - 10
+                intWeight = diffWeight
+                newInt = Int(intWeight!)
+                print("hasil rumus 4", (10 * 100) + (newInt * 50))
+            } else {
+                let diffWeight = intWeight! - 20
+                intWeight = diffWeight
+                newInt = Int(intWeight!)
+                print ((10 * 100) + (10 * 50) + (newInt * 25))
+            }
+        } else if statage > 17 {
+            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+            var intWeight = Int(weightForm)
+            let newWeight = 50 * intWeight!
+            intWeight = newWeight
+            newInt = Int(intWeight!)
+            
+            print("hasil rumus 4", newInt)
+        }
     }
     
     
@@ -279,7 +308,7 @@ class WaterViewController: UIViewController {
         
         setActivities()
         
-        print(activities)
+       // print(activities)
         
         
         
