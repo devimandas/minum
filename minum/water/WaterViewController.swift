@@ -61,7 +61,7 @@ class WaterViewController: UIViewController {
         volumePicker.backgroundColor = .lightGray
     }
     
-    func countRumus1() {
+    func rumusSatu(str: Int)->Int {
         if isAuthorize == true {
             //RUMUS 1 : Usia
             if statage < 17 {
@@ -73,6 +73,7 @@ class WaterViewController: UIViewController {
                     let newWeight = intWeight! * 100
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    return newInt
 //                    rms1 = newInt
 //                    print("hasil rumus 1", rms1)
 //                    print("hasil rumus 1",newInt)
@@ -80,6 +81,7 @@ class WaterViewController: UIViewController {
                     let newWeight = 1000+50*(20 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    return newInt
 //                    rms1 = newInt
 //                    print("hasil rumus 1", rms1)
 //                    print("hasil rumus 1",newInt)
@@ -87,6 +89,7 @@ class WaterViewController: UIViewController {
                     let newWeight = 1500+20*(70 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
+                    return newInt
 //                    rms1 = newInt
 //                    print("hasil rumus 1", rms1)
 //                    print("hasil rumus 1",newInt)
@@ -100,28 +103,40 @@ class WaterViewController: UIViewController {
                 let newWeight = 50 * intWeight!
                 intWeight = newWeight
                 newInt = Int(intWeight!)
+                return newInt
 //                rms1 = newInt
 //                print("hasil rumus 1", rms1)
 //                print("hasil rumus 1", newInt)
             }
-            
+        }
+        return 0
+    }
+    
+    func rumusDua(str: String)->Float {
+        if isAuthorize == true {
             //RUMUS 2 : Jenis Kelamin
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             
             if statgender == "Male" {
                 let devide = Float(57) / Float(100)
                 let test = devide * Float(weightForm)!
+                return test
 //                rms2 = Int(test)
 //                print("hasil rumus 2", rms2)
 //                print("hasil rumus 2", test)
-            } else {
+            } else if statgender == "Female"{
                 let devide = Float(55) / Float(100)
                 let test = devide * Float(weightForm)!
+                return test
 //                rms2 = Int(test)
 //                print("hasil rumus 2", rms2)
 //                print("hasil rumus 2", test)
             }
         }
+        return 0
+    }
+    
+    func rumusTiga(str: String)->Float {
         
         //RUMUS 3 : Faktor Aktivitas
         //Menentukan Faktor Aktifitas
@@ -142,6 +157,7 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Berat
                 faktorAktivitas = 2.10
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
@@ -149,6 +165,7 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.76
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
@@ -156,6 +173,7 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.56
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
@@ -171,6 +189,7 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Berat
                 faktorAktivitas = 2.00
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
@@ -179,6 +198,7 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.70
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
@@ -187,52 +207,13 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.55
                 totalKalori = faktorAktivitas * AMB
+                return Float(totalKalori)
 //                rms3 = Int(totalKalori)
 //                print("hasil rumus 3", rms3)
 //                print("hasil rumus 3", totalKalori)
             }
         }
-        
-        //RUMUS 4
-//        if statage < 17 {
-//            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
-//            var intWeight = Int(weightForm)
-//            //if intWeight != nil {
-//            if intWeight! <= 10 {
-//                let newWeight = intWeight! * 100
-//                intWeight = newWeight
-//                newInt = Int(intWeight!)
-//                rms4 = newInt
-//                print("hasil rumus 4", rms4)
-////                print("hasil rumus 4", newInt)
-//
-//            } else if intWeight! <= 20 {
-//                let diffWeight = intWeight! - 10
-//                intWeight = diffWeight
-//                newInt = Int(intWeight!)
-//                let aa = (10 * 100) + (newInt * 50)
-//                rms4 = aa
-//                print("hasil rumus 4", rms4)
-////                print("hasil rumus 4", (10 * 100) + (newInt * 50))
-//            } else {
-//                let diffWeight = intWeight! - 20
-//                intWeight = diffWeight
-//                newInt = Int(intWeight!)
-//                let aa = (10 * 100) + (10 * 50) + (newInt * 25)
-//                rms4 = aa
-//                print("hasil rumus 4", rms4)
-////                print ((10 * 100) + (10 * 50) + (newInt * 25))
-//            }
-//        } else if statage > 17 {
-//            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
-//            var intWeight = Int(weightForm)
-//            let newWeight = 50 * intWeight!
-//            intWeight = newWeight
-//            newInt = Int(intWeight!)
-//            rms4 = newInt
-////            print("hasil rumus 4", newInt)
-//            print("hasil rumus 4", rms4)
-//        }
+        return 0
     }
     
     func rumusEmpat(str: Int)->Int{
@@ -272,6 +253,18 @@ class WaterViewController: UIViewController {
 //                print("hasil rumus 4", rms4)
         }
         return statage
+    }
+    
+    func totalKebutuhanMinum() -> Double {
+        //Kebutuhan cairan ideal = (Rumus 1 + Rumus 2 + Rumus 3 + Rumus 4) / 4
+        print("rumus1 : ", rumusSatu(str: statage))
+        print("rumus2 :", rumusDua(str: statgender!))
+        print("rumus3 :", rumusTiga(str: statgender!))
+        print("rumus4 :", rumusEmpat(str: statage))
+        
+        var totalMinum : Double
+        totalMinum = (Double(rumusSatu(str: statage)) + Double(rumusDua(str: statgender!)) + Double(rumusTiga(str: statgender!)) + Double(rumusEmpat(str: statage))) / 4
+        return totalMinum
     }
     
     @objc func createToolbar() {
@@ -388,12 +381,16 @@ class WaterViewController: UIViewController {
         super.viewDidLoad()
         
         setActivities()
-        print("nana :",rumusEmpat(str: statage))
+        print("total akhir :", totalKebutuhanMinum())
+//        print("rumus1 : ", rumusSatu(str: statage))
+//        print("rumus2 :", rumusDua(str: statgender!))
+//        print("rumus3 :", rumusTiga(str: statgender!))
+//        print("rumus4 :",rumusEmpat(str: statage))
         
        // print(activities)
 //        totalRumus()
         
-        countRumus1()
+      //  countRumus1()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
