@@ -11,6 +11,11 @@ import WaveAnimationView
 
 var statActivities = defaults.string(forKey: "activities")
 
+//var rms1: Int = 0
+//var rms2: Int = 0
+//var rms3: Int = 0
+//var rms4: Int = 0
+
 class WaterViewController: UIViewController {
     
     @IBOutlet weak var waterVolumeTextField: UITextField!
@@ -68,17 +73,23 @@ class WaterViewController: UIViewController {
                     let newWeight = intWeight! * 100
                     intWeight = newWeight
                     newInt = Int(intWeight!)
-                    print("hasil rumus 1",newInt)
+//                    rms1 = newInt
+//                    print("hasil rumus 1", rms1)
+//                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 11 || intWeight! <= 20 {
                     let newWeight = 1000+50*(20 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
-                    print("hasil rumus 1",newInt)
+//                    rms1 = newInt
+//                    print("hasil rumus 1", rms1)
+//                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 21 || intWeight! <= 70 {
                     let newWeight = 1500+20*(70 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
-                    print("hasil rumus 1",newInt)
+//                    rms1 = newInt
+//                    print("hasil rumus 1", rms1)
+//                    print("hasil rumus 1",newInt)
                 }
                 
                 // }
@@ -89,7 +100,9 @@ class WaterViewController: UIViewController {
                 let newWeight = 50 * intWeight!
                 intWeight = newWeight
                 newInt = Int(intWeight!)
-                print("hasil rumus 1", newInt)
+//                rms1 = newInt
+//                print("hasil rumus 1", rms1)
+//                print("hasil rumus 1", newInt)
             }
             
             //RUMUS 2 : Jenis Kelamin
@@ -98,11 +111,15 @@ class WaterViewController: UIViewController {
             if statgender == "Male" {
                 let devide = Float(57) / Float(100)
                 let test = devide * Float(weightForm)!
-                print("hasil rumus 2", test)
+//                rms2 = Int(test)
+//                print("hasil rumus 2", rms2)
+//                print("hasil rumus 2", test)
             } else {
                 let devide = Float(55) / Float(100)
                 let test = devide * Float(weightForm)!
-                print("hasil rumus 2", test)
+//                rms2 = Int(test)
+//                print("hasil rumus 2", rms2)
+//                print("hasil rumus 2", test)
             }
         }
         
@@ -125,17 +142,23 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Berat
                 faktorAktivitas = 2.10
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.76
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.56
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
             }
             
         } else if statgender == "Female" {
@@ -148,24 +171,72 @@ class WaterViewController: UIViewController {
                 //Faktor Aktivitas Berat
                 faktorAktivitas = 2.00
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
                 
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.70
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
                 
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.55
                 totalKalori = faktorAktivitas * AMB
-                print("hasil rumus 3", totalKalori)
+//                rms3 = Int(totalKalori)
+//                print("hasil rumus 3", rms3)
+//                print("hasil rumus 3", totalKalori)
             }
         }
         
         //RUMUS 4
-        if statage < 17 {
+//        if statage < 17 {
+//            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+//            var intWeight = Int(weightForm)
+//            //if intWeight != nil {
+//            if intWeight! <= 10 {
+//                let newWeight = intWeight! * 100
+//                intWeight = newWeight
+//                newInt = Int(intWeight!)
+//                rms4 = newInt
+//                print("hasil rumus 4", rms4)
+////                print("hasil rumus 4", newInt)
+//
+//            } else if intWeight! <= 20 {
+//                let diffWeight = intWeight! - 10
+//                intWeight = diffWeight
+//                newInt = Int(intWeight!)
+//                let aa = (10 * 100) + (newInt * 50)
+//                rms4 = aa
+//                print("hasil rumus 4", rms4)
+////                print("hasil rumus 4", (10 * 100) + (newInt * 50))
+//            } else {
+//                let diffWeight = intWeight! - 20
+//                intWeight = diffWeight
+//                newInt = Int(intWeight!)
+//                let aa = (10 * 100) + (10 * 50) + (newInt * 25)
+//                rms4 = aa
+//                print("hasil rumus 4", rms4)
+////                print ((10 * 100) + (10 * 50) + (newInt * 25))
+//            }
+//        } else if statage > 17 {
+//            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+//            var intWeight = Int(weightForm)
+//            let newWeight = 50 * intWeight!
+//            intWeight = newWeight
+//            newInt = Int(intWeight!)
+//            rms4 = newInt
+////            print("hasil rumus 4", newInt)
+//            print("hasil rumus 4", rms4)
+//        }
+    }
+    
+    func rumusEmpat(str: Int)->Int{
+        if str < 17 {
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             var intWeight = Int(weightForm)
             //if intWeight != nil {
@@ -173,30 +244,35 @@ class WaterViewController: UIViewController {
                 let newWeight = intWeight! * 100
                 intWeight = newWeight
                 newInt = Int(intWeight!)
-                print("hasil rumus 4", newInt)
+                return newInt
+//                print("hasil rumus 4", newInt)
                 
             } else if intWeight! <= 20 {
                 let diffWeight = intWeight! - 10
                 intWeight = diffWeight
                 newInt = Int(intWeight!)
-                print("hasil rumus 4", (10 * 100) + (newInt * 50))
+                let aa = (10 * 100) + (newInt * 50)
+                return aa
+//                print("hasil rumus 4", (10 * 100) + (newInt * 50))
             } else {
                 let diffWeight = intWeight! - 20
                 intWeight = diffWeight
                 newInt = Int(intWeight!)
-                print ((10 * 100) + (10 * 50) + (newInt * 25))
+                let aa = (10 * 100) + (10 * 50) + (newInt * 25)
+                return aa
+//                print ((10 * 100) + (10 * 50) + (newInt * 25))
             }
-        } else if statage > 17 {
+        } else if str > 17 {
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
             var intWeight = Int(weightForm)
             let newWeight = 50 * intWeight!
             intWeight = newWeight
             newInt = Int(intWeight!)
-            
-            print("hasil rumus 4", newInt)
+            return newInt
+//                print("hasil rumus 4", rms4)
         }
+        return statage
     }
-    
     
     @objc func createToolbar() {
         
@@ -303,14 +379,19 @@ class WaterViewController: UIViewController {
         }
     }
     
+//    func totalRumus(){
+//        let total = rms1 + rms2 + rms3 + rms4
+//        print("total",total)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setActivities()
+        print("nana :",rumusEmpat(str: statage))
         
        // print(activities)
-        
-        
+//        totalRumus()
         
         countRumus1()
         
