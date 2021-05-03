@@ -11,11 +11,6 @@ import WaveAnimationView
 
 var statActivities = defaults.string(forKey: "activities")
 
-//var rms1: Int = 0
-//var rms2: Int = 0
-//var rms3: Int = 0
-//var rms4: Int = 0
-
 class WaterViewController: UIViewController {
     
     @IBOutlet weak var waterVolumeTextField: UITextField!
@@ -66,7 +61,7 @@ class WaterViewController: UIViewController {
             //RUMUS 1 : Usia
             if statage < 17 {
                 
-                let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+                guard let weightForm = statweight?.replacingOccurrences(of: " kg", with: "") else { return 0 }
                 var intWeight = Int(weightForm)
                 //if intWeight != nil {
                 if intWeight! <= 10 {
@@ -74,28 +69,18 @@ class WaterViewController: UIViewController {
                     intWeight = newWeight
                     newInt = Int(intWeight!)
                     return newInt
-//                    rms1 = newInt
-//                    print("hasil rumus 1", rms1)
-//                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 11 || intWeight! <= 20 {
                     let newWeight = 1000+50*(20 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
                     return newInt
-//                    rms1 = newInt
-//                    print("hasil rumus 1", rms1)
-//                    print("hasil rumus 1",newInt)
                 } else if intWeight! >= 21 || intWeight! <= 70 {
                     let newWeight = 1500+20*(70 - intWeight!)
                     intWeight = newWeight
                     newInt = Int(intWeight!)
                     return newInt
-//                    rms1 = newInt
-//                    print("hasil rumus 1", rms1)
-//                    print("hasil rumus 1",newInt)
                 }
                 
-                // }
             } else if statage > 17 {
                 
                 let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
@@ -104,9 +89,6 @@ class WaterViewController: UIViewController {
                 intWeight = newWeight
                 newInt = Int(intWeight!)
                 return newInt
-//                rms1 = newInt
-//                print("hasil rumus 1", rms1)
-//                print("hasil rumus 1", newInt)
             }
         }
         return 0
@@ -121,36 +103,26 @@ class WaterViewController: UIViewController {
                 let devide = Float(57) / Float(100)
                 let test = devide * Float(weightForm)!
                 return test
-//                rms2 = Int(test)
-//                print("hasil rumus 2", rms2)
-//                print("hasil rumus 2", test)
             } else if statgender == "Female"{
                 let devide = Float(55) / Float(100)
                 let test = devide * Float(weightForm)!
                 return test
-//                rms2 = Int(test)
-//                print("hasil rumus 2", rms2)
-//                print("hasil rumus 2", test)
             }
         }
         return 0
     }
     
     func rumusTiga(str: String)->Float {
-        
-        //RUMUS 3 : Faktor Aktivitas
-        //Menentukan Faktor Aktifitas
-        //Menentukan AMB
+        //RUMUS 3 : Faktor Aktivitas : Menentukan Faktor Aktifitas : Menentukan AMB
         var AMB : Double
         var faktorAktivitas : Double
         var totalKalori : Double
-        let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
-        let heightForm = statheight!.replacingOccurrences(of: " cm", with: "")
+        let weightForm = statweight?.replacingOccurrences(of: " kg", with: "")
+        let heightForm = statheight?.replacingOccurrences(of: " cm", with: "")
         
         if statgender == "Male" {
-            AMB = Double(66.5 + (13.7 * Float(weightForm)!)) + (5.0 * Double(Float(heightForm)!)) - (6.8 * Double(statage))
+            AMB = Double(66.5 + (13.7 * Float(weightForm ?? "Not Set")!)) + (5.0 * Double(Float(heightForm ?? "Not Set")!)) - (6.8 * Double(statage))
             print("hasil male AMB", AMB)
-            
             if (defaults.object(forKey: "activities") == nil) {
                 print("tes aktivitas masih kosong")
             } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
@@ -158,31 +130,20 @@ class WaterViewController: UIViewController {
                 faktorAktivitas = 2.10
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.76
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.56
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
             }
-            
         } else if statgender == "Female" {
-            AMB = Double(66.5 + (9.6 * Float(weightForm)!)) + (1.8 * Double(Float(heightForm)!)) - (4.7 * Double(statage))
+            AMB = Double(66.5 + (9.6 * Float(weightForm ?? "Not Set")!)) + (1.8 * Double(Float(heightForm ?? "Not Set")!)) - (4.7 * Double(statage))
             print("hasil female AMB", AMB)
-            
             if (defaults.object(forKey: "activities") == nil) {
                 print("tes aktivitas masih kosong")
             } else if (defaults.object(forKey: "activities") as! String == "Strenuous" ) {
@@ -190,27 +151,16 @@ class WaterViewController: UIViewController {
                 faktorAktivitas = 2.00
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
-                
             } else if (defaults.object(forKey: "activities") as! String == "Medium" ) {
                 //Faktor Aktivitas Sedang
                 faktorAktivitas = 1.70
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
-                
             } else if (defaults.object(forKey: "activities") as! String == "Light" ) {
                 //Faktor Aktivitas Ringan
                 faktorAktivitas = 1.55
                 totalKalori = faktorAktivitas * AMB
                 return Float(totalKalori)
-//                rms3 = Int(totalKalori)
-//                print("hasil rumus 3", rms3)
-//                print("hasil rumus 3", totalKalori)
             }
         }
         return 0
@@ -218,7 +168,7 @@ class WaterViewController: UIViewController {
     
     func rumusEmpat(str: Int)->Int{
         if str < 17 {
-            let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
+            guard let weightForm = statweight?.replacingOccurrences(of: " kg", with: "") else { return 0 }
             var intWeight = Int(weightForm)
             //if intWeight != nil {
             if intWeight! <= 10 {
@@ -226,7 +176,6 @@ class WaterViewController: UIViewController {
                 intWeight = newWeight
                 newInt = Int(intWeight!)
                 return newInt
-//                print("hasil rumus 4", newInt)
                 
             } else if intWeight! <= 20 {
                 let diffWeight = intWeight! - 10
@@ -234,14 +183,12 @@ class WaterViewController: UIViewController {
                 newInt = Int(intWeight!)
                 let aa = (10 * 100) + (newInt * 50)
                 return aa
-//                print("hasil rumus 4", (10 * 100) + (newInt * 50))
             } else {
                 let diffWeight = intWeight! - 20
                 intWeight = diffWeight
                 newInt = Int(intWeight!)
                 let aa = (10 * 100) + (10 * 50) + (newInt * 25)
                 return aa
-//                print ((10 * 100) + (10 * 50) + (newInt * 25))
             }
         } else if str > 17 {
             let weightForm = statweight!.replacingOccurrences(of: " kg", with: "")
@@ -250,20 +197,19 @@ class WaterViewController: UIViewController {
             intWeight = newWeight
             newInt = Int(intWeight!)
             return newInt
-//                print("hasil rumus 4", rms4)
         }
         return statage
     }
     
     func totalKebutuhanMinum() -> Double {
         //Kebutuhan cairan ideal = (Rumus 1 + Rumus 2 + Rumus 3 + Rumus 4) / 4
-        print("rumus1 : ", rumusSatu(str: statage))
-        print("rumus2 :", rumusDua(str: statgender!))
-        print("rumus3 :", rumusTiga(str: statgender!))
-        print("rumus4 :", rumusEmpat(str: statage))
+        //print("rumus1 : ", rumusSatu(str: statage))
+      //  print("rumus2 :", rumusDua(str: statgender!))
+      //  print("rumus3 :", rumusTiga(str: statgender!))
+      //  print("rumus4 :", rumusEmpat(str: statage))
         
         var totalMinum : Double
-        totalMinum = (Double(rumusSatu(str: statage)) + Double(rumusDua(str: statgender!)) + Double(rumusTiga(str: statgender!)) + Double(rumusEmpat(str: statage))) / 4
+        totalMinum = (Double(rumusSatu(str: statage)) + Double(rumusDua(str: statgender ?? "Not Set")) + Double(rumusTiga(str: statgender ?? "Not Set")) + Double(rumusEmpat(str: statage))) / 4
         return totalMinum
     }
     
@@ -314,53 +260,75 @@ class WaterViewController: UIViewController {
     }
     
     @objc private func activitiesTapButton(_ sender: Any){
-        let imagePickerController = UIImagePickerController()
-        
-        //Alert Notification
-        let actionSheet = UIAlertController(title: "Add Activities", message: "You must enter an activity type : ", preferredStyle: .alert)
-        
-        //Photo From Camera
-        actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
-            self.activitiesButton.setTitle("Strenuous", for: .normal)
-            self.activities = "Strenuous"
-           // print("tes print activities", self.activities!)
+        if isAuthorize == true {
+            let imagePickerController = UIImagePickerController()
+            
+            //Alert Notification
+            let actionSheet = UIAlertController(title: "Add Activities", message: "You must enter an activity type : ", preferredStyle: .alert)
+            
+            //Photo From Camera
+            actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
+                self.activitiesButton.setTitle("Strenuous", for: .normal)
+                self.activities = "Strenuous"
+               // print("tes print activities", self.activities!)
+                
+                
+                //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
+                defaults.set(self.activities, forKey: "activities")
+            }))
+            
+            //Photo from Photo Library
+            actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
+                self.activitiesButton.setTitle("Medium", for: .normal)
+                self.activities = "Medium"
+               // print("tes print activities", self.activities!)
+                
+                defaults.set(self.activities, forKey: "activities")
+            }))
+            
+            //Photo from Photo Library
+            actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
+                self.activitiesButton.setTitle("Light", for: .normal)
+                self.activities = "Light"
+               // print("tes print activities", self.activities!)
+                
+                defaults.set(self.activities, forKey: "activities")
+            }))
+            
+            //Cancel Button
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    //        self.present(actionSheet, animated: true, completion: nil)
             
             
-            //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
-            defaults.set(self.activities, forKey: "activities")
-        }))
-        
-        //Photo from Photo Library
-        actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
-            self.activitiesButton.setTitle("Medium", for: .normal)
-            self.activities = "Medium"
-           // print("tes print activities", self.activities!)
             
-            defaults.set(self.activities, forKey: "activities")
-        }))
-        
-        //Photo from Photo Library
-        actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
-            self.activitiesButton.setTitle("Light", for: .normal)
-            self.activities = "Light"
-           // print("tes print activities", self.activities!)
-            
-            defaults.set(self.activities, forKey: "activities")
-        }))
-        
-        //Cancel Button
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        self.present(actionSheet, animated: true, completion: nil)
-        
-        
-        
-        //Popover Position
-        if let popoverController = actionSheet.popoverPresentationController {
-            popoverController.sourceView = self.view
-            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
-            popoverController.permittedArrowDirections = []
+            //Popover Position
+            if let popoverController = actionSheet.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+            self.present(actionSheet, animated: true, completion: nil)
         }
-        self.present(actionSheet, animated: true, completion: nil)
+        else {
+            let imagePickerController = UIImagePickerController()
+            
+            //Alert Notification
+            let actionSheet = UIAlertController(title: "Before You Add Activities", message: "You must authorize HealthKit : ", preferredStyle: .alert)
+            
+            //Cancel Button
+            actionSheet.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+    //        self.present(actionSheet, animated: true, completion: nil)
+            
+            
+            
+            //Popover Position
+            if let popoverController = actionSheet.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+            self.present(actionSheet, animated: true, completion: nil)
+        }
     }
     
     func setActivities(){
@@ -372,25 +340,11 @@ class WaterViewController: UIViewController {
         }
     }
     
-//    func totalRumus(){
-//        let total = rms1 + rms2 + rms3 + rms4
-//        print("total",total)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setActivities()
         print("total akhir :", totalKebutuhanMinum())
-//        print("rumus1 : ", rumusSatu(str: statage))
-//        print("rumus2 :", rumusDua(str: statgender!))
-//        print("rumus3 :", rumusTiga(str: statgender!))
-//        print("rumus4 :",rumusEmpat(str: statage))
-        
-       // print(activities)
-//        totalRumus()
-        
-      //  countRumus1()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -400,6 +354,7 @@ class WaterViewController: UIViewController {
         
         if isAuthorize == true {
             targetDrinks = 3000
+            activitiesButton.isEnabled = true
         }
         
         lapView.layer.cornerRadius = lapView.frame.size.width/2
@@ -448,10 +403,6 @@ class WaterViewController: UIViewController {
         self.activitiesButton.addTarget(self, action: #selector(activitiesTapButton), for: .touchUpInside)
         print(targetDrinks)
     }
-    
-//    @objc func methodOfReceivedProgress(notification: Notification) {
-//        print("Value of notification : ", notification.object ?? "")
-//    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
