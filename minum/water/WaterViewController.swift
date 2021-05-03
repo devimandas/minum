@@ -353,7 +353,7 @@ class WaterViewController: UIViewController {
         
         
         if isAuthorize == true {
-            targetDrinks = 3000
+            targetDrinks = Int(totalKebutuhanMinum())
             activitiesButton.isEnabled = true
         }
         
@@ -367,7 +367,7 @@ class WaterViewController: UIViewController {
         //       drinkBtnlbl.layer.cornerRadius = 5
         let drinks = CoreDataManager.shared.fetchDrinks()
         var histories = [History]()
-        if drinks!.count != 0 {
+        if drinks?.count != 0 {
             
             histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
             let amount = histories.map({$0.amount}).reduce(0, +)
@@ -381,7 +381,7 @@ class WaterViewController: UIViewController {
             wave.progress = Float(resultAnimasi)
             lapView.addSubview(wave)
             wave.startAnimation()
-        }  else if drinks!.count == 0 {
+        }  else if drinks?.count == 0 {
             
             let amount = 0
             progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
@@ -394,7 +394,7 @@ class WaterViewController: UIViewController {
             lapView.addSubview(wave)
             wave.startAnimation()
             print(amount)
-        }
+        } 
         
         createVolumePicker()
         createToolbar()
