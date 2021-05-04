@@ -186,12 +186,16 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
     
     @IBOutlet weak var notifSwitch: UISwitch!
     @IBAction func saveSwitchState(_ sender: Any) {
+      //  notifSwitch.isOn = !notifSwitch.isOn
+       // print("tes on off")
         let defaults = UserDefaults.standard
         
         if notifSwitch.isOn {
             defaults.set(true, forKey: "switchOn")
+            print("on")
         } else {
             defaults.set(false, forKey: "switchOff")
+            print("off")
         }
     }
     
@@ -281,14 +285,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
             height.text = statheight
         }
         
-        let defaults = UserDefaults.standard
+       // let defaults = UserDefaults.standard
         if (defaults.object(forKey: "switchOff") == nil) {
             defaults.bool(forKey: "switchOff")
         } else {
             (defaults.object(forKey: "switchOn") != nil)
             notifSwitch.isOn = defaults.bool(forKey: "switchOn")
         }
-        // countTargetDrinks()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
