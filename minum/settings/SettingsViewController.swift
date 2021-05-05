@@ -240,10 +240,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
     }
     
     @IBAction func fasting(_ sender: Any) {
-        notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 33)))
-        notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 34)))
-        notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 35)))
-       
+        notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
+        notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
+        notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 04, minute: 00)))
         
         schedule()
         scheduleNotifications()
