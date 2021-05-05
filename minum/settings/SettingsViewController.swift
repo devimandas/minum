@@ -191,11 +191,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         let defaults = UserDefaults.standard
         
         if notifSwitch.isOn {
-            defaults.set(true, forKey: "switchOn")
+            defaults.set(true, forKey: "reminderSwitch")
             print("on")
+            fasting((Any).self)
         } else {
-            defaults.set(false, forKey: "switchOff")
+            defaults.set(false, forKey: "reminderSwitch")
             print("off")
+            SettingsViewController.removeLocalNotification()
         }
     }
     
@@ -232,10 +234,15 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         }
     }
     
+    public static func removeLocalNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+    }
+    
     @IBAction func fasting(_ sender: Any) {
-        notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
-        notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
-        notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 16, minute: 00)))
+        notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 33)))
+        notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 34)))
+        notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 01, minute: 35)))
        
         
         schedule()
@@ -286,11 +293,13 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         }
         
        // let defaults = UserDefaults.standard
-        if (defaults.object(forKey: "switchOff") == nil) {
-            defaults.bool(forKey: "switchOff")
+        if (defaults.object(forKey: "reminderSwitch") == nil) {
+            defaults.bool(forKey: "reminderSwitch")
+            
         } else {
-            (defaults.object(forKey: "switchOn") != nil)
-            notifSwitch.isOn = defaults.bool(forKey: "switchOn")
+            (defaults.object(forKey: "reminderSwitch") != nil)
+            notifSwitch.isOn = defaults.bool(forKey: "reminderSwitch")
+           // fasting((Any).self)
         }
     }
     
