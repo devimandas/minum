@@ -183,19 +183,33 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var authorizeHK: UISwitch!
     
-    
-    @IBOutlet weak var notifSwitch: UISwitch!
-    @IBAction func saveSwitchState(_ sender: Any) {
-      //  notifSwitch.isOn = !notifSwitch.isOn
-       // print("tes on off")
+    @IBOutlet weak var notifDaySwitch: UISwitch!
+    @IBAction func notifDaySwitch(_ sender: Any) {
+        //  notifSwitch.isOn = !notifSwitch.isOn
+        // print("tes on off")
         let defaults = UserDefaults.standard
         
-        if notifSwitch.isOn {
-            defaults.set(true, forKey: "reminderSwitch")
+        if notifDaySwitch.isOn {
+            defaults.set(true, forKey: "notifDaySwitch")
             print("on")
-            fasting((Any).self)
+            alarmDayFasting((Any).self)
         } else {
-            defaults.set(false, forKey: "reminderSwitch")
+            defaults.set(false, forKey: "notifDaySwitch")
+            print("off")
+            SettingsViewController.removeLocalNotification()
+        }
+    }
+    
+    @IBOutlet weak var notifFastingSwitch: UISwitch!
+    @IBAction func notifFastingSwitch(_ sender: Any) {
+        // let defaults = UserDefaults.standard
+        
+        if notifFastingSwitch.isOn {
+            defaults.set(true, forKey: "notifFastingSwitch")
+            print("on")
+            alarmDayFasting((Any).self)
+        } else {
+            defaults.set(false, forKey: "notifFastingSwitch")
             print("off")
             SettingsViewController.removeLocalNotification()
         }
@@ -239,14 +253,25 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         center.removeAllPendingNotificationRequests()
     }
     
-    @IBAction func fasting(_ sender: Any) {
-        notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
-        notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
-        notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 04, minute: 00)))
+    func alarmDayFasting(_ sender: Any) {
+        if notifDaySwitch.isOn {
+            notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
+            notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
+            notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 16, minute: 00)))
+            
+            schedule()
+            scheduleNotifications()
+            
+        }
         
-        schedule()
-        scheduleNotifications()
-        
+        if notifFastingSwitch.isOn {
+            notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 04, minute: 00)))
+            notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 18, minute: 30)))
+            notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 21, minute: 00)))
+            
+            schedule()
+            scheduleNotifications()
+        }
     }
     
     
@@ -283,7 +308,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //User default Profile
         if isAuthorize == true {
             age.text = "\(statage)"
             gender.text = statgender
@@ -291,15 +316,33 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
             height.text = statheight
         }
         
-       // let defaults = UserDefaults.standard
-        if (defaults.object(forKey: "reminderSwitch") == nil) {
-            defaults.bool(forKey: "reminderSwitch")
-            
+        //User default Notif Day Switch
+        if (defaults.object(forKey: "notifDaySwitch") == nil) {
+            defaults.bool(forKey: "notifDaySwitch")
         } else {
-            (defaults.object(forKey: "reminderSwitch") != nil)
-            notifSwitch.isOn = defaults.bool(forKey: "reminderSwitch")
-           // fasting((Any).self)
+            (defaults.object(forKey: "notifDaySwitch") != nil)
+            notifDaySwitch.isOn = defaults.bool(forKey: "notifDaySwitch")
+          //  notifFastingSwitch.isEnabled = false
         }
+        
+        //User default Notif Fasting Switch
+        if (defaults.object(forKey: "notifFastingSwitch") == nil) {
+            defaults.bool(forKey: "notifFastingSwitch")
+        } else {
+            (defaults.object(forKey: "notifFastingSwitch") != nil)
+            notifFastingSwitch.isOn = defaults.bool(forKey: "notifFastingSwitch")
+            // fasting((Any).self)
+        }
+        
+        //Disable Switch Button
+        if notifDaySwitch.isOn {
+            notifFastingSwitch!.isOn = false
+            notifFastingSwitch.isEnabled = false
+        } else if notifFastingSwitch.isOn {
+            notifDaySwitch!.isOn = false
+            notifDaySwitch.isEnabled = false
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
