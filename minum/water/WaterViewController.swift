@@ -349,7 +349,7 @@ class WaterViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         // formatter.unitsStyle = .full
-        dateWater.text = formatter.string(for: self)
+//        dateWater.text = formatter.string(for: self)
         
         
         if isAuthorize == true {
