@@ -19,7 +19,6 @@ class WaterViewController: UIViewController {
     @IBOutlet weak var dateWater: UILabel!
     @IBOutlet weak var activitiesButton: UIButton!
     
-    
     let volumes = ["100",
                    "200",
                    "300",
@@ -255,6 +254,14 @@ class WaterViewController: UIViewController {
         
         guard let newData = CoreDataManager.shared.createDrink(amount: selectVolume!) else { return }
         dismissKeyboard()
+        
+        let drinks = CoreDataManager.shared.fetchDrinks()
+        var histories = [History]()
+            histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+            let amount = histories.map({$0.amount}).reduce(0, +)
+            
+        self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
+
         //print(newData)
         
     }
@@ -275,6 +282,14 @@ class WaterViewController: UIViewController {
                 
                 //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
                 defaults.set(self.activities, forKey: "activities")
+                self.targetDrinks = Int(self.totalKebutuhanMinum())
+                let drinks = CoreDataManager.shared.fetchDrinks()
+                var histories = [History]()
+                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                    let amount = histories.map({$0.amount}).reduce(0, +)
+                    
+                self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
+                    
             }))
             
             //Photo from Photo Library
@@ -284,6 +299,13 @@ class WaterViewController: UIViewController {
                // print("tes print activities", self.activities!)
                 
                 defaults.set(self.activities, forKey: "activities")
+                self.targetDrinks = Int(self.totalKebutuhanMinum())
+                let drinks = CoreDataManager.shared.fetchDrinks()
+                var histories = [History]()
+                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                    let amount = histories.map({$0.amount}).reduce(0, +)
+                    
+                self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
             }))
             
             //Photo from Photo Library
@@ -293,6 +315,13 @@ class WaterViewController: UIViewController {
                // print("tes print activities", self.activities!)
                 
                 defaults.set(self.activities, forKey: "activities")
+                self.targetDrinks = Int(self.totalKebutuhanMinum())
+                let drinks = CoreDataManager.shared.fetchDrinks()
+                var histories = [History]()
+                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                    let amount = histories.map({$0.amount}).reduce(0, +)
+                    
+                self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
             }))
             
             //Cancel Button
@@ -451,7 +480,7 @@ extension WaterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         selectVolume = volumes[row]
-        waterVolumeTextField.text = selectVolume
+        waterVolumeTextField.text = ""
     }
     
 }

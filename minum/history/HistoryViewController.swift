@@ -9,13 +9,24 @@
 import UIKit
 import CoreData
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController{
     
     @IBOutlet weak var historyTable: UITableView!
-
+    
+    var historyDrink : [Drink] = []
+    var isLoading = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("load")
+        if isLoading == true {
+            historyTable.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchDrink()
+        isLoading = true
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedDrinks(notification:)), name: Notification.Name("NotificationSaveDrinks"), object: nil)
 //
@@ -28,8 +39,13 @@ class HistoryViewController: UIViewController {
         historyTable.dataSource = self
         historyTable.delegate = self
         historyTable.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryCell")
-    
+        historyTable.reloadData()
     }
+    
+    func fetchDrink() {
+        self.historyDrink = CoreDataManager.shared.fetchDrinks() ?? []
+    }
+    
     
 //    @objc func methodOfReceivedDrinks(notification: Notification) {
 //            print("Value of notification : ", notification.object ?? "")
@@ -62,20 +78,18 @@ extension HistoryViewController: UITableViewDelegate{
 }
 
 extension HistoryViewController: UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = CoreDataManager.shared.fetchDrinks()
-        return data?.count ?? 0
+        return historyDrink.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let drinks = CoreDataManager.shared.fetchDrinks()
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as! HistoryTableViewCell
-        let arr: [History] = (drinks?[indexPath.row].history!.allObjects as? [History])!
+        let arr: [History] = (historyDrink[indexPath.row].history!.allObjects as? [History])!
     
         cell.desc.text = "You drank \(arr.map({$0.amount}).reduce(0, +)) ml water"
-        cell.date.text = "\(drinks?[indexPath.row].date ?? "nodata")"
+        cell.date.text = "\(historyDrink[indexPath.row].date ?? "nodata")"
                  
 
         return cell
