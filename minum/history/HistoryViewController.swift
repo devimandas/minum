@@ -28,14 +28,6 @@ class HistoryViewController: UIViewController{
         fetchDrink()
         isLoading = true
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedDrinks(notification:)), name: Notification.Name("NotificationSaveDrinks"), object: nil)
-//
-//        let objToBeSent = "Save Drinks"
-//                NotificationCenter.default.post(name: Notification.Name("NotificationSaveDrinks"), object: objToBeSent)
-        
-//        let objToBeSent = "Save Progress"
-//                NotificationCenter.default.post(name: Notification.Name("NotificationSaveProgress"), object: objToBeSent)
-        
         historyTable.dataSource = self
         historyTable.delegate = self
         historyTable.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryCell")
@@ -45,15 +37,6 @@ class HistoryViewController: UIViewController{
     func fetchDrink() {
         self.historyDrink = CoreDataManager.shared.fetchDrinks() ?? []
     }
-    
-    
-//    @objc func methodOfReceivedDrinks(notification: Notification) {
-//            print("Value of notification : ", notification.object ?? "")
-//        }
-    
-//    @objc func methodOfReceivedNotification(notification: Notification) {
-//            print("Value of notification : ", notification.object ?? "")
-//        }
     
     func applicationDirectoryPath() -> String {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String
@@ -94,7 +77,4 @@ extension HistoryViewController: UITableViewDataSource{
 
         return cell
     }
-    
-    
-    
 }

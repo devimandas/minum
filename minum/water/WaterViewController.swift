@@ -33,7 +33,7 @@ class WaterViewController: UIViewController {
     let notification = UINotificationFeedbackGenerator()
     //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
     
-    // var dateWater: Date
+    var timer = Timer()
     var selectVolume: String?
     var text:UILabel!
     var name:String!
@@ -203,9 +203,9 @@ class WaterViewController: UIViewController {
     func totalKebutuhanMinum() -> Double {
         //Kebutuhan cairan ideal = (Rumus 1 + Rumus 2 + Rumus 3 + Rumus 4) / 4
         //print("rumus1 : ", rumusSatu(str: statage))
-      //  print("rumus2 :", rumusDua(str: statgender!))
-      //  print("rumus3 :", rumusTiga(str: statgender!))
-      //  print("rumus4 :", rumusEmpat(str: statage))
+        //  print("rumus2 :", rumusDua(str: statgender!))
+        //  print("rumus3 :", rumusTiga(str: statgender!))
+        //  print("rumus4 :", rumusEmpat(str: statage))
         
         var totalMinum : Double
         totalMinum = (Double(rumusSatu(str: statage)) + Double(rumusDua(str: statgender ?? "Not Set")) + Double(rumusTiga(str: statgender ?? "Not Set")) + Double(rumusEmpat(str: statage))) / 4
@@ -257,13 +257,10 @@ class WaterViewController: UIViewController {
         
         let drinks = CoreDataManager.shared.fetchDrinks()
         var histories = [History]()
-            histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
-            let amount = histories.map({$0.amount}).reduce(0, +)
-            
-        self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
-
-        //print(newData)
+        histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+        let amount = histories.map({$0.amount}).reduce(0, +)
         
+        self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
     }
     
     @objc private func activitiesTapButton(_ sender: Any){
@@ -277,34 +274,30 @@ class WaterViewController: UIViewController {
             actionSheet.addAction(UIAlertAction(title: "Strenuous", style: .default, handler: {(action: UIAlertAction) in
                 self.activitiesButton.setTitle("Strenuous", for: .normal)
                 self.activities = "Strenuous"
-               // print("tes print activities", self.activities!)
                 
-                
-                //statweight = weightFormatter.string(fromKilograms: Double(weightUH))
                 defaults.set(self.activities, forKey: "activities")
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
-                    let amount = histories.map({$0.amount}).reduce(0, +)
-                    
+                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                let amount = histories.map({$0.amount}).reduce(0, +)
+                
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
-                    
+                
             }))
             
             //Photo from Photo Library
             actionSheet.addAction(UIAlertAction(title: "Medium", style: .default, handler: { (action: UIAlertAction) in
                 self.activitiesButton.setTitle("Medium", for: .normal)
                 self.activities = "Medium"
-               // print("tes print activities", self.activities!)
                 
                 defaults.set(self.activities, forKey: "activities")
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
-                    let amount = histories.map({$0.amount}).reduce(0, +)
-                    
+                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                let amount = histories.map({$0.amount}).reduce(0, +)
+                
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
             }))
             
@@ -312,23 +305,20 @@ class WaterViewController: UIViewController {
             actionSheet.addAction(UIAlertAction(title: "Light", style: .default, handler: { (action: UIAlertAction) in
                 self.activitiesButton.setTitle("Light", for: .normal)
                 self.activities = "Light"
-               // print("tes print activities", self.activities!)
+                // print("tes print activities", self.activities!)
                 
                 defaults.set(self.activities, forKey: "activities")
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                    histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
-                    let amount = histories.map({$0.amount}).reduce(0, +)
-                    
+                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                let amount = histories.map({$0.amount}).reduce(0, +)
+                
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
             }))
             
             //Cancel Button
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    //        self.present(actionSheet, animated: true, completion: nil)
-            
-            
             
             //Popover Position
             if let popoverController = actionSheet.popoverPresentationController {
@@ -346,9 +336,6 @@ class WaterViewController: UIViewController {
             
             //Cancel Button
             actionSheet.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-    //        self.present(actionSheet, animated: true, completion: nil)
-            
-            
             
             //Popover Position
             if let popoverController = actionSheet.popoverPresentationController {
@@ -358,6 +345,10 @@ class WaterViewController: UIViewController {
             }
             self.present(actionSheet, animated: true, completion: nil)
         }
+    }
+    
+    @objc func tick() {
+        dateWater.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
     }
     
     func setActivities(){
@@ -377,9 +368,9 @@ class WaterViewController: UIViewController {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        // formatter.unitsStyle = .full
-//        dateWater.text = formatter.string(for: self)
         
+        dateWater.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
         
         if isAuthorize == true {
             targetDrinks = Int(totalKebutuhanMinum())
@@ -435,7 +426,6 @@ class WaterViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         wave.stopAnimation()
     }
     
@@ -457,7 +447,6 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
-    
     
 }
 
