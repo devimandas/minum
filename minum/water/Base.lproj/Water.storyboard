@@ -126,11 +126,23 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-fa-pWQ" userLabel="ProgressLeb">
+                                <rect key="frame" x="165" y="227" width="150" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="6Tr-a6-NgM"/>
+                                    <constraint firstAttribute="height" constant="100" id="hBy-TX-5s5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="51"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DJ8-FV-JHy" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" constant="-30" id="6z3-oi-4OP"/>
+                            <constraint firstItem="gSs-fa-pWQ" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="87" id="Wam-MR-FYx"/>
+                            <constraint firstItem="gSs-fa-pWQ" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="165" id="cXd-u5-dPM"/>
                             <constraint firstItem="DJ8-FV-JHy" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="kFE-mm-PFN"/>
                             <constraint firstItem="DJ8-FV-JHy" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="ked-dR-dYi"/>
                             <constraint firstItem="DJ8-FV-JHy" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="rl1-S4-Jlf"/>
@@ -139,7 +151,7 @@
                     <navigationItem key="navigationItem" title="My Water" id="FcI-LE-gzY"/>
                     <connections>
                         <outlet property="activitiesButton" destination="wFS-FD-qJF" id="DX9-ae-vkw"/>
-                        <outlet property="animasiProgres" destination="GMq-S3-xWc" id="BZa-Ex-aBu"/>
+                        <outlet property="animasiProgres" destination="gSs-fa-pWQ" id="pU2-S6-6I8"/>
                         <outlet property="dateWater" destination="jtk-P4-CJy" id="byP-lC-OZn"/>
                         <outlet property="lapView" destination="9vi-hE-KHN" id="4fz-J1-t5K"/>
                         <outlet property="progressDrinks" destination="8vU-v6-7KU" id="ni6-HB-Thc"/>
