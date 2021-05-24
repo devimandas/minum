@@ -20,6 +20,8 @@ class HistoryViewController: UIViewController{
         print("load")
         if isLoading == true {
             historyTable.reloadData()
+        } else if isLoading == false {
+            historyTable.reloadData()
         }
     }
     
@@ -73,7 +75,6 @@ extension HistoryViewController: UITableViewDataSource{
     
         cell.desc.text = "You drank \(arr.map({$0.amount}).reduce(0, +)) ml water"
         cell.date.text = "\(historyDrink[indexPath.row].date ?? "nodata")"
-                 
 
         return cell
     }

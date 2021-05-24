@@ -363,8 +363,13 @@ class WaterViewController: UIViewController {
         }
     }
     
+//    private var waterView: WaterView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.waterView = WaterView.init(frame: self.view.frame)
+//        self.view = self.waterView
         
         setActivities()
         print("total akhir :", totalKebutuhanMinum())
