@@ -255,9 +255,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
     
     func alarmDayFasting(_ sender: Any) {
         if notifDaySwitch.isOn {
-            notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
-            notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
-            notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 16, minute: 00)))
+            notifications.append(Notification(title: "Good Morning", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 08, minute: 00)))
+            notifications.append(Notification(title: "Good Afternoon", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 12, minute: 00)))
+            notifications.append(Notification(title: "Good Afternoon", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 16, minute: 00)))
             
             schedule()
             scheduleNotifications()
@@ -265,9 +265,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, Obser
         }
         
         if notifFastingSwitch.isOn {
-            notifications.append(Notification(title: "Kepala1", body: "alarm pertama", datetime: DateComponents(calendar: Calendar.current, hour: 04, minute: 00)))
-            notifications.append(Notification(title: "Kepala2", body: "alarm kedua", datetime: DateComponents(calendar: Calendar.current, hour: 18, minute: 30)))
-            notifications.append(Notification(title: "Kepala3", body: "alarm ketiga", datetime: DateComponents(calendar: Calendar.current, hour: 21, minute: 00)))
+            notifications.append(Notification(title: "Good Morning", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 04, minute: 00)))
+            notifications.append(Notification(title: "Good Afternoon", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 18, minute: 30)))
+            notifications.append(Notification(title: "Good Night", body: "Don't forget to drink water", datetime: DateComponents(calendar: Calendar.current, hour: 21, minute: 00)))
             
             schedule()
             scheduleNotifications()
