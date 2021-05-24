@@ -37,10 +37,9 @@
                                         <rect key="frame" x="107" y="0.0" width="200" height="290"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtk-P4-CJy">
-                                                <rect key="frame" x="25" y="0.0" width="150" height="40"/>
+                                                <rect key="frame" x="82" y="0.0" width="36" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="WgS-GB-vX7"/>
-                                                    <constraint firstAttribute="width" constant="150" id="chq-0C-I3u"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -48,19 +47,9 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vi-hE-KHN">
                                                 <rect key="frame" x="0.0" y="40" width="200" height="200"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMq-S3-xWc">
-                                                        <rect key="frame" x="49.333333333333336" y="70" width="101.33333333333331" height="60"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="200" constant="200" id="MLO-ak-dCq"/>
-                                                    <constraint firstItem="GMq-S3-xWc" firstAttribute="centerX" secondItem="9vi-hE-KHN" secondAttribute="centerX" priority="200" id="VLd-Ky-hCZ"/>
-                                                    <constraint firstItem="GMq-S3-xWc" firstAttribute="centerY" secondItem="9vi-hE-KHN" secondAttribute="centerY" priority="200" id="Zfz-2e-y3i"/>
                                                     <constraint firstAttribute="height" priority="200" constant="200" id="nFU-Xj-UUl"/>
                                                 </constraints>
                                             </view>

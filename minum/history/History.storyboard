@@ -43,6 +43,7 @@
                     <tabBarItem key="tabBarItem" title="History" image="doc.plaintext" catalog="system" id="VRV-Zo-1kW"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dateHistoryLabel" destination="zgS-tp-zAl" id="WWi-ev-gey"/>
                         <outlet property="historyTable" destination="UOG-1u-7iz" id="ZYR-D4-9wC"/>
                         <segue destination="2QV-GF-FLQ" kind="presentation" identifier="toDetail" id="jI4-Pe-Ik8"/>
                     </connections>
