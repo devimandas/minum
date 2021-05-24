@@ -29,6 +29,9 @@ class WaterViewController: UIViewController {
                    "900",
                    "1000"]
     
+    var anOptionalInt: Int? = 0
+  //  let number = anOptionalInt ?? 0
+    
     //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
     let notification = UINotificationFeedbackGenerator()
     //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
@@ -279,7 +282,7 @@ class WaterViewController: UIViewController {
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                histories.append(contentsOf: drinks?.last?.history?.allObjects as? [History] ?? [])
                 let amount = histories.map({$0.amount}).reduce(0, +)
                 
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
@@ -295,7 +298,7 @@ class WaterViewController: UIViewController {
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                histories.append(contentsOf: drinks?.last?.history!.allObjects as? [History] ?? [])
                 let amount = histories.map({$0.amount}).reduce(0, +)
                 
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
@@ -311,7 +314,7 @@ class WaterViewController: UIViewController {
                 self.targetDrinks = Int(self.totalKebutuhanMinum())
                 let drinks = CoreDataManager.shared.fetchDrinks()
                 var histories = [History]()
-                histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
+                histories.append(contentsOf: drinks?.last?.history!.allObjects as? [History] ?? [])
                 let amount = histories.map({$0.amount}).reduce(0, +)
                 
                 self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
