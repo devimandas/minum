@@ -30,7 +30,7 @@ class WaterViewController: UIViewController {
                    "1000"]
     
     var anOptionalInt: Int? = 0
-  //  let number = anOptionalInt ?? 0
+    //  let number = anOptionalInt ?? 0
     
     //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
     let notification = UINotificationFeedbackGenerator()
@@ -264,6 +264,32 @@ class WaterViewController: UIViewController {
         let amount = histories.map({$0.amount}).reduce(0, +)
         
         self.progressDrinks.text = "\(amount)" + " / \(self.targetDrinks) ml"
+        
+        if drinks?.count != 0 {
+            
+            progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+            
+            
+            wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+            let resultAnimasi = Double((amount))/Double(targetDrinks)
+            animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+            wave.progress = Float(resultAnimasi)
+            lapView.addSubview(wave)
+            wave.startAnimation()
+        }  else if drinks?.count == 0 {
+            
+            let amount = 0
+            //      progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+            
+            
+            wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+            let resultAnimasi = Double((amount))/Double(targetDrinks)
+            animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+            wave.progress = Float(resultAnimasi)
+            lapView.addSubview(wave)
+            wave.startAnimation()
+            print(amount)
+        }
     }
     
     @objc private func activitiesTapButton(_ sender: Any){
@@ -363,13 +389,13 @@ class WaterViewController: UIViewController {
         }
     }
     
-//    private var waterView: WaterView!
+    //    private var waterView: WaterView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.waterView = WaterView.init(frame: self.view.frame)
-//        self.view = self.waterView
+        //        self.waterView = WaterView.init(frame: self.view.frame)
+        //        self.view = self.waterView
         
         setActivities()
         print("total akhir :", totalKebutuhanMinum())
@@ -395,14 +421,11 @@ class WaterViewController: UIViewController {
         //       drinkBtnlbl.layer.cornerRadius = 5
         let drinks = CoreDataManager.shared.fetchDrinks()
         var histories = [History]()
+        
         if drinks?.count != 0 {
-            
             histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
             let amount = histories.map({$0.amount}).reduce(0, +)
-            
             progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
-            
-            
             wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
             let resultAnimasi = Double((amount))/Double(targetDrinks)
             animasiProgres.text = "\(Int(resultAnimasi * 100))%"
@@ -410,11 +433,8 @@ class WaterViewController: UIViewController {
             lapView.addSubview(wave)
             wave.startAnimation()
         }  else if drinks?.count == 0 {
-            
             let amount = 0
             progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
-            
-            
             wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
             let resultAnimasi = Double((amount))/Double(targetDrinks)
             animasiProgres.text = "\(Int(resultAnimasi * 100))%"
@@ -422,7 +442,7 @@ class WaterViewController: UIViewController {
             lapView.addSubview(wave)
             wave.startAnimation()
             print(amount)
-        } 
+        }
         
         createVolumePicker()
         createToolbar()
@@ -434,7 +454,7 @@ class WaterViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        wave.stopAnimation()
+        //        wave.stopAnimation()
     }
     
 }
