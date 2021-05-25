@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0214C7E725DED0DD00902E05 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0214C7E625DED0DD00902E05 /* HealthKit.framework */; };
 		0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */; };
-		022783EE265BE1F100D5F291 /* WaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022783ED265BE1F100D5F291 /* WaterView.swift */; };
 		0250CD6C248144510031825D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0250CD6B248144510031825D /* Settings.storyboard */; };
 		0250CD6E248145E50031825D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250CD6D248145E50031825D /* SettingsViewController.swift */; };
 		0266C30F25EEB6B50092F5E5 /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */; };
@@ -42,7 +41,6 @@
 		0214C7E525DED0DC00902E05 /* minum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minum.entitlements; sourceTree = "<group>"; };
 		0214C7E625DED0DD00902E05 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		0214C7EB25E02E6700902E05 /* HealthKitSetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSetupAssistant.swift; sourceTree = "<group>"; };
-		022783ED265BE1F100D5F291 /* WaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterView.swift; sourceTree = "<group>"; };
 		0250CD6B248144510031825D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		0250CD6D248145E50031825D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0266C30E25EEB6B50092F5E5 /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			children = (
 				60AF9D76246AB51B003764ED /* WaterViewController.swift */,
 				60AF9D7A246AB51B003764ED /* Water.storyboard */,
-				022783ED265BE1F100D5F291 /* WaterView.swift */,
 			);
 			path = water;
 			sourceTree = "<group>";
@@ -342,7 +339,6 @@
 				0266C31225EEB7DB0092F5E5 /* ProfileDataStore.swift in Sources */,
 				0266C31525EEBD6D0092F5E5 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				0214C7EC25E02E6700902E05 /* HealthKitSetupAssistant.swift in Sources */,
-				022783EE265BE1F100D5F291 /* WaterView.swift in Sources */,
 				60AF9D77246AB51B003764ED /* WaterViewController.swift in Sources */,
 				60AF9D73246AB51B003764ED /* AppDelegate.swift in Sources */,
 				029D94D5260FF46E00165C77 /* LocalNotificationManager.swift in Sources */,

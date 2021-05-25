@@ -17,16 +17,6 @@ class HistoryViewController: UIViewController{
     var historyDrink : [Drink] = []
     var isLoading = false
     
-    var timer = Timer()
-//    var dateHistoryLabel = Date()
-//    var d_format = DateFormatter()
-//    d_format.dateFormat = "dd:MM:yyyy"
-//    label.text = dformat.string(from: today)
-    
-    @objc func tick() {
-        dateHistoryLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         print("load")
         if isLoading == true {
@@ -46,10 +36,10 @@ class HistoryViewController: UIViewController{
         historyTable.register(UINib(nibName: "HistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "HistoryCell")
         historyTable.reloadData()
         
+        //Label Date History
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM"
-        dateHistoryLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
+        formatter.dateFormat = "MMMM yyyy"
+        dateHistoryLabel.text = formatter.string(from: Date())
     }
     
     func fetchDrink() {

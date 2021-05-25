@@ -36,7 +36,6 @@ class WaterViewController: UIViewController {
     let notification = UINotificationFeedbackGenerator()
     //A concrete UIFeedbackGenerator subclass that creates haptics to communicate successes, failures, and warnings.
     
-    var timer = Timer()
     var selectVolume: String?
     var text:UILabel!
     var name:String!
@@ -376,10 +375,6 @@ class WaterViewController: UIViewController {
         }
     }
     
-    @objc func tick() {
-        dateWater.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
-    }
-    
     func setActivities(){
         if (defaults.object(forKey: "activities") == nil) {
             print("tes activities")
@@ -394,17 +389,13 @@ class WaterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        self.waterView = WaterView.init(frame: self.view.frame)
-        //        self.view = self.waterView
-        
         setActivities()
         print("total akhir :", totalKebutuhanMinum())
         
+        //Label Date History
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        dateWater.text = DateFormatter.localizedString(from: Date(), dateStyle: .long, timeStyle: .none)
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
+        formatter.dateFormat = "MMM d, yyyy"
+        dateWater.text = formatter.string(from: Date())
         
         if isAuthorize == true {
             targetDrinks = Int(totalKebutuhanMinum())
