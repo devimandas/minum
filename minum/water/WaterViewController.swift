@@ -413,6 +413,16 @@ class WaterViewController: UIViewController {
         let drinks = CoreDataManager.shared.fetchDrinks()
         var histories = [History]()
         
+        let amount = 0
+        progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
+        wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
+        let resultAnimasi = Double((amount))/Double(targetDrinks)
+        animasiProgres.text = "\(Int(resultAnimasi * 100))%"
+        wave.progress = Float(resultAnimasi)
+        lapView.addSubview(wave)
+        wave.startAnimation()
+        print(amount)
+        
         if drinks?.count != 0 {
             histories.append(contentsOf: drinks?.last?.history!.allObjects as! [History])
             let amount = histories.map({$0.amount}).reduce(0, +)
@@ -423,17 +433,10 @@ class WaterViewController: UIViewController {
             wave.progress = Float(resultAnimasi)
             lapView.addSubview(wave)
             wave.startAnimation()
-        }  else if drinks?.count == 0 {
-            let amount = 0
-            progressDrinks.text = "\(amount)" + " / \(targetDrinks) ml"
-            wave = WaveAnimationView(frame: CGRect(origin: .zero, size: lapView.bounds.size), color: UIColor(rgb: 0x5CC2F4))
-            let resultAnimasi = Double((amount))/Double(targetDrinks)
-            animasiProgres.text = "\(Int(resultAnimasi * 100))%"
-            wave.progress = Float(resultAnimasi)
-            lapView.addSubview(wave)
-            wave.startAnimation()
-            print(amount)
         }
+        
+            
+        
         
         createVolumePicker()
         createToolbar()
